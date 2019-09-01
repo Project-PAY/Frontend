@@ -1,0 +1,38 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "jsRules": {},
+    "rules": {
+        "member-access": false,
+        "ordered-imports": false,
+        "quotemark": false,
+        "no-console": false,
+        "jsx-no-lambda": false,
+        "no-implicit-dependencies": false,
+        "no-submodule-imports": false,
+        "no-extra-boolean-cast": false,
+        "no-shadowed-variable": [
+        false,
+        {
+            "class": false,
+            "function": false,
+            "import": false,
+            "enum": false
+        }
+        ],
+        "no-unnecessary-else": false,
+        "ter-indent": [true, 2],
+        "semicolon": [true, "always"],
+        "react-hooks-nesting": "warning",
+        "disable-next-line": "eofline"
+    },
+    "rulesDirectory": [],
+    "linterOptions": {
+        "exclude": [
+            "config/**/*.js",
+            "node_modules/**/*.ts"
+       ]
+   }
+}
