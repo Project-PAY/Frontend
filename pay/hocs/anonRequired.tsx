@@ -4,7 +4,7 @@ import {withRouter, RouteComponentProps} from 'react-router-dom';
 
 const anonRequired = <T extends {}>(Target: React.ComponentType) => {
   const AnonRequired = ({history, ...props}: T & RouteComponentProps) => {
-    // router back OR return Target
+    // router back OR return Target - Type Error should be solved.
     const access = 'Test';
 
     if (access) {
