@@ -26,7 +26,8 @@
         "ter-indent": [true, 2],
         "semicolon": [true, "always"],
         "react-hooks-nesting": "warning",
-        "disable-next-line": "eofline"
+        "disable-next-line": "eofline",
+        "trailing-comma": false,
     },
     "rulesDirectory": [],
     "linterOptions": {
