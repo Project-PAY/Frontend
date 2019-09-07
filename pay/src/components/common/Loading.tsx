@@ -8,9 +8,9 @@ const Img = styled.img`
   padding: 20px 0;
 `;
 
-const InnerLoading = React.memo(({innerRef}: {
+const InnerLoading: React.FC<{
   innerRef: React.Ref<HTMLParagraphElement>
-}) => (
+}> = React.memo(({innerRef}) => (
   <p ref={innerRef}>
     <Img
       src={LoadingImg}
