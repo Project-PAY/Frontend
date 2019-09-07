@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Loading from '../src/components/common/Loading';
-import {Indexable} from '../src/@types/global.d';
+import Loading from '../../src/components/common/Loading';
+import {Indexable} from '../../src/@types/global.d';
 
 const lazy = (
   t: () => Promise<any>,
