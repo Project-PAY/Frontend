@@ -1,11 +1,12 @@
 // 토큰 없을 시 401 페이지로 이동
 import * as React from 'react';
+import {useSelector} from 'react-redux';
+import {IRootState} from '../src/reducers';
 import Page401 from '../pages/Page401';
 
 const loginRequired = <T extends {}>(Target: React.ComponentType) => {
   const LoginRequired = (props: T) => {
-    // return Page401 OR Target
-    const access = 'Test';
+    const {session: {access}} = useSelector(({system}: IRootState) => system);
 
     return !access ? (
       <Page401/>

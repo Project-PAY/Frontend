@@ -1,9 +1,9 @@
-import {ISessionState} from "../@types/system";
+import {ISystemState} from "../@types/system";
 import {combineReducers} from "redux";
 import system from './system';
 
 export interface IRootState {
-  system: ISessionState;
+  system: ISystemState;
 }
 
 const rootReducer = combineReducers({
