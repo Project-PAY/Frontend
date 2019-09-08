@@ -1,13 +1,34 @@
 import * as React from 'react';
-import Loading from './components/common/Loading';
 import {IRouteObj} from './@types/routes';
-import {Redirect, Route, Switch} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
+import Page404 from '../pages/common/Page404';
 
-const App: React.FC<{routes: IRouteObj[]}> = React.memo(({routes}) => {
+interface Props {
+  routes: IRouteObj[];
+}
+
+const App: React.FC<Props> = React.memo(({routes}) => {
+  const routeList = React.useMemo(() => (
+    routes.map(({component: Comp, ...route}) => (
+      <Route
+        key={route.path}
+        {...route}
+        component={Comp}
+      />
+    ))
+  ), [routes]);
+
+  React.useEffect(() => {
+    // @TODO: TokenRefresh in useEffect
+  }, []);
+
   return (
-    <div>
-      <Loading/>
-    </div>
+    routeList ? (
+      <Switch>
+        {routeList}
+        <Page404/>
+      </Switch>
+    ) : null
   );
 });
 
