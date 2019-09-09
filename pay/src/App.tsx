@@ -20,6 +20,7 @@ const App: React.FC<Props> = React.memo(({routes}) => {
 
   React.useEffect(() => {
     // @TODO: TokenRefresh in useEffect
+    console.log('---------- COMPONENT DID NOUNT ----------');
   }, []);
 
   return (
