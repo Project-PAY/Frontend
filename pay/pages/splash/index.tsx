@@ -2,13 +2,34 @@ import * as React from 'react';
 import {RouteComponentProps} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import {IRootState} from '../../src/reducers';
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 import {SECOND} from '../../src/constants/times';
+import {$MAIN, $WHTIE} from '../../styles/variables.types';
 
-const Div = styled.div`
+const spacingLetterAnimation = keyframes`
+  from {
+    letter-spacing: -5px;
+  }
+
+  to {
+    letter-spacing: 0;
+  }
 `;
 
+const Div = styled.div`
+  height: 100%;
+  background-color: ${$MAIN};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+// @TODO: Gotham Bold로 폰트 변경
 const Span = styled.span`
+  font-size: 60px;
+  color: ${$WHTIE};
+  animation: ${spacingLetterAnimation} .6s ease .5s forwards;
+  letter-spacing: -5px;
 `;
 
 interface Props extends RouteComponentProps {
