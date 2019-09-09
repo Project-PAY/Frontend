@@ -45,7 +45,7 @@ const Splash: React.FC<Props> = ({history}) => {
     setTimeout(() => {
       const to = access ? '/main' : '/welcome';
       history.replace(to);
-    }, 2.5 * SECOND);
+    }, 1000 * SECOND);
   }, []);
 
   return (
