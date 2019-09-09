@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {IRouteObj} from './@types/routes';
 import {Route, Switch, BrowserRouter as Router} from 'react-router-dom';
-// import Page404 from '../pages/common/Page404';
+import Page404 from '../pages/common/Page404';
 
 interface Props {
   routes: IRouteObj[];
@@ -27,6 +27,7 @@ const App: React.FC<Props> = React.memo(({routes}) => {
       <Router>
         <Switch>
           {routeList}
+          <Route component={Page404}/>
         </Switch>
       </Router>
     ) : null

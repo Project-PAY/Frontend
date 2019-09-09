@@ -1,7 +1,9 @@
 import * as React from 'react';
 
-const Main = React.memo(() => (
-  <section>Main</section>
-));
+const Main = () => {
+  return (
+    <div>Hello</div>
+  );
+};
 
 export default Main;
