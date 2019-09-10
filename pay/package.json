@@ -23,6 +23,7 @@
     "@types/redux-devtools-extension": "^2.13.2",
     "@types/redux-thunk": "^2.1.0",
     "@types/styled-components": "^4.1.18",
+    "@types/styled-jsx": "^2.2.8",
     "@typescript-eslint/eslint-plugin": "1.13.0",
     "@typescript-eslint/parser": "1.13.0",
     "axios": "^0.19.0",
@@ -81,6 +82,7 @@
     "semver": "6.3.0",
     "style-loader": "1.0.0",
     "styled-components": "^4.3.2",
+    "styled-jsx": "^3.2.2",
     "terser-webpack-plugin": "1.4.1",
     "ts-pnp": "1.1.2",
     "tslint": "^5.19.0",
@@ -166,7 +168,8 @@
       "@babel/preset-env"
     ],
     "plugins": [
-      "@babel/plugin-syntax-dynamic-import"
+      "@babel/plugin-syntax-dynamic-import",
+      "styled-jsx/babel"
     ]
   }
 }
