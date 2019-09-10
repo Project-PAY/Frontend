@@ -1,0 +1,14 @@
+/* static으로 변환 */
+/* @font-face {
+  font-family: 'Gotham-Bold';
+  font-style: normal;
+  font-weight: normal;
+  src: local(Gotham Bold), url('./assets/fonts/GothamBold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Gotham-Bold';
+  font-style: normal;
+  font-weight: normal;
+  src: local(Gotham Bold), url('./assets/fonts/Gotham-Bold.woff') format('woff');
+} */

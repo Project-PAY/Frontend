@@ -8,21 +8,9 @@ import reducers from './reducers';
 import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import routes from '../pages/routes/routes';
-import {createGlobalStyle} from 'styled-components';
-
-const GlobalStyle = createGlobalStyle`
-  html, body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  body > div {
-    height: 100%;
-  }
-`;
+import baseStyles from '../styles/base.styles';
+import fontStyles from '../styles/font.styles';
+import './index.css';
 
 const store = createStore(reducers, composeWithDevTools(
   applyMiddleware(thunk)
@@ -31,7 +19,8 @@ const store = createStore(reducers, composeWithDevTools(
 ReactDOM.render(
   <Provider store={store}>
     <App routes={routes}/>
-    <GlobalStyle/>
+    <style jsx global>{fontStyles}</style>
+    <style jsx global>{baseStyles}</style>
   </Provider>,
   document.getElementById('root')
 );

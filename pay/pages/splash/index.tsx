@@ -33,6 +33,7 @@ const Span = styled.span`
   })};
   animation: ${spacingLetterAnimation} .6s ease .5s forwards;
   letter-spacing: -5px;
+  font-family: 'Gotham-Bold' !important;
 `;
 
 interface Props extends RouteComponentProps {

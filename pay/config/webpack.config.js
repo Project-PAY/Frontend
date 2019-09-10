@@ -489,6 +489,16 @@ module.exports = function(webpackEnv) {
                 name: 'static/media/[name].[hash:8].[ext]',
               },
             },
+            // {
+            //   test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+            //   use: [{
+            //     loader: require.resolve('file-loader'),
+            //     options: {
+            //       name: 'static/media/[name].[ext]',
+            //       publicPath: '../../' //dont actually use these fonts but still need to process them
+            //     }
+            //   }]
+            // }
             // ** STOP ** Are you adding a new loader?
             // Make sure to add the new loader(s) before the "file" loader.
           ],
