@@ -342,6 +342,13 @@ module.exports = function(webpackEnv) {
             // "url" loader works like "file" loader except that it embeds assets
             // smaller than specified limit in bytes as data URLs to avoid requests.
             // A missing `test` is equivalent to a match.
+            // {
+            //   test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+            //   loader: require.resolve('url-loader'),
+            //   options: {
+            //     name: 'static/media/[name].[hash:8].[ext]'
+            //   }
+            // },
             {
               test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
               loader: require.resolve('url-loader'),
@@ -484,9 +491,10 @@ module.exports = function(webpackEnv) {
               // its runtime that would otherwise be processed through "file" loader.
               // Also exclude `html` and `json` extensions so they get processed
               // by webpacks internal loaders.
+              // include: [/\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/],
               exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
               options: {
-                name: 'static/media/[name].[hash:8].[ext]',
+                name: 'static/media/[name].[hash:8].[ext]'
               },
             },
             // {

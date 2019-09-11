@@ -25,15 +25,14 @@ const Div = styled.div`
   align-items: center;
 `;
 
-// @TODO: Gotham Bold로 폰트 변경 - fontStyleMixin에 family 속성 추가
 const Span = styled.span`
   ${fontStyleMixin({
     color: $WHTIE,
-    size: 60
+    size: 60,
+    family: 'Gotham-Bold'
   })};
   animation: ${spacingLetterAnimation} .6s ease .5s forwards;
   letter-spacing: -5px;
-  font-family: 'Gotham-Bold' !important;
 `;
 
 interface Props extends RouteComponentProps {
@@ -46,7 +45,7 @@ const Splash: React.FC<Props> = ({history}) => {
     setTimeout(() => {
       const to = access ? '/main' : '/welcome';
       history.replace(to);
-    }, 1000 * SECOND);
+    }, 2.5 * SECOND);
   }, []);
 
   return (

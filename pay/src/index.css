@@ -1,14 +1,12 @@
-/* static으로 변환 */
-/* @font-face {
-  font-family: 'Gotham-Bold';
-  font-style: normal;
-  font-weight: normal;
-  src: local(Gotham Bold), url('./assets/fonts/GothamBold.woff') format('woff');
-}
+/*
+  styled-jsx의 global 속성으로 @font-face를 등록하는데에 문제가 있어,
+  index.css에 등록한 후 사용하도록 변경함
+  더 나은 방법을 찾을 때 까지 font.styles.ts 사용하지 않음
+*/
 
 @font-face {
   font-family: 'Gotham-Bold';
   font-style: normal;
   font-weight: normal;
-  src: local(Gotham Bold), url('./assets/fonts/Gotham-Bold.woff') format('woff');
-} */
+  src: local('Gotham Bold'), url('../src/assets/fonts/GothamBold.woff') format('woff');
+}

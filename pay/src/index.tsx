@@ -9,7 +9,7 @@ import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import routes from '../pages/routes/routes';
 import baseStyles from '../styles/base.styles';
-import fontStyles from '../styles/font.styles';
+// import fontStyles from '../styles/font.styles';
 import './index.css';
 
 const store = createStore(reducers, composeWithDevTools(
@@ -19,7 +19,7 @@ const store = createStore(reducers, composeWithDevTools(
 ReactDOM.render(
   <Provider store={store}>
     <App routes={routes}/>
-    <style jsx global>{fontStyles}</style>
+    {/* <style jsx global>{fontStyles}</style> */}
     <style jsx global>{baseStyles}</style>
   </Provider>,
   document.getElementById('root')
