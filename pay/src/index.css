@@ -5,6 +5,20 @@
 */
 
 @font-face {
+  font-family: 'Gotham-Light';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Gotham Light'), url('../src/assets/fonts/GothamLight.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Gotham-Medium';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Gotham Medium'), url('../src/assets/fonts/GothamMedium.woff') format('woff');
+}
+
+@font-face {
   font-family: 'Gotham-Bold';
   font-style: normal;
   font-weight: normal;
