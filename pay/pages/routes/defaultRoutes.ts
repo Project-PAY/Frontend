@@ -15,6 +15,11 @@ const defaultRoutes: IRouteObj[] = [
     path: '/main',
     exact: true,
     component: () => import(/* webpackPrefetch: true */ '../')
+  },
+  {
+    path: '/setting',
+    exact: true,
+    component: () => import(/* webpackPrefetch: true */ '../setting')
   }
 ];
 
