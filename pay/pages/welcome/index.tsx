@@ -20,18 +20,16 @@ const BackgroundImg = styled.div`
   })};
 `;
 
-const Welcome = () => {
-  return (
-    <Div>
-      <TitleComp/>
-      <BackgroundImg/>
-      <LinkBtn
-        text="환영합니다!"
-        type="link"
-        to="/setting"
-      />
-    </Div>
-  );
-};
+const Welcome = () => (
+  <Div>
+    <TitleComp/>
+    <BackgroundImg/>
+    <LinkBtn
+      text="환영합니다!"
+      type="link"
+      to="/setting"
+    />
+  </Div>
+);
 
 export default Welcome;
