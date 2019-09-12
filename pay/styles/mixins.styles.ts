@@ -11,3 +11,8 @@ export const fontStyleMixin = (font: IFontStyleMixin = {}) => `
   ${font.weight ? `font-weight: ${font.weight}`: ``};
   ${font.family ? `font-family: '${font.family}'`: ``}; 
 `;
+
+export const opacityMixin = (opc: number) => `
+  opacity: ${opc};
+  filter: alpha(opacity=${opc} * 100);
+`;

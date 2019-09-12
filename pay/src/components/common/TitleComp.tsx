@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled, {css} from 'styled-components';
-import {fontStyleMixin} from '../../../styles/mixins.styles';
+import {fontStyleMixin, opacityMixin} from '../../../styles/mixins.styles';
 import {$WHTIE} from '../../../styles/variables.types';
 
 const commonHeadingStyle = (size: number) => (
@@ -22,9 +22,9 @@ const H1 = styled.h1`
 `;
 
 const H2 = styled.h2`
-  opacity: .5;
   letter-spacing: -0.5px;
   ${commonHeadingStyle(20)};
+  ${opacityMixin(0.5)};
 `;
 
 interface Props {
