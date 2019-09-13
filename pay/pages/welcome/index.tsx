@@ -5,6 +5,7 @@ import TitleComp from '../../src/components/common/TitleComp';
 import {backgroundImgMixin} from '../../styles/mixins.styles';
 import backgroundImg from '../../src/assets/images/img-setting-background.png';
 import LinkBtn from '../../src/components/common/LinkBtn';
+import anonRequired from '../../hocs/anonRequired';
 
 const Div = styled.div`
   height: 100%;
@@ -32,4 +33,4 @@ const Welcome = () => (
   </Div>
 );
 
-export default Welcome;
+export default anonRequired(Welcome);
