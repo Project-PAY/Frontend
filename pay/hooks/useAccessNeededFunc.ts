@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 import {IRootState} from "../src/reducers";
 import isEqual from 'lodash/isEqual';
 
-const useAccessNeededFunc = (callback: (access: TokenType) => void) => {
+const useAccessNeededFunc = <T>(callback: (access: TokenType) => T) => {
   const {session: {access}} = useSelector(
     ({system}: IRootState) => system,
     (prev, curr) => isEqual(prev, curr)

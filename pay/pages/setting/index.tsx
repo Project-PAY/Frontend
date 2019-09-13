@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import {$MAIN} from '../../styles/variables.types';
 import TitleComp from '../../src/components/common/TitleComp';
 import LinkBtn from '../../src/components/common/LinkBtn';
-import {useDispatch} from 'react-redux';
 import anonRequired from '../../hocs/anonRequired';
-import {fetchInfo} from '../../src/reducers/info/thunks';
+import useAccessNeededFunc from '../../hooks/useAccessNeededFunc';
+import InfoApi from '../../src/apis/InfoApi';
+import Input from '../../src/components/input';
 
 const Div = styled.div`
   height: 100%;
@@ -13,7 +14,7 @@ const Div = styled.div`
 `;
 
 const Setting = () => {
-  const dispatch = useDispatch();
+  const infoApi: InfoApi = useAccessNeededFunc(access => new InfoApi(access));
 
   // 임시
   const isProperForm = React.useCallback((form: any) => {
@@ -32,13 +33,14 @@ const Setting = () => {
     }
   }, []);
 
-  React.useEffect(() => {
-    dispatch(fetchInfo());
-  });
-
   return (
     <Div>
       <TitleComp/>
+      <div>
+        <Input
+          value=""
+        />
+      </div>
       <LinkBtn
         text="설정하기"
         type="button"
