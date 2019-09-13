@@ -4,6 +4,7 @@ import {$MAIN} from '../../styles/variables.types';
 import TitleComp from '../../src/components/common/TitleComp';
 import LinkBtn from '../../src/components/common/LinkBtn';
 import {useDispatch} from 'react-redux';
+import anonRequired from '../../hocs/anonRequired';
 
 const Div = styled.div`
   height: 100%;
@@ -42,4 +43,4 @@ const Setting = () => {
   );
 };
 
-export default Setting;
+export default anonRequired(Setting);
