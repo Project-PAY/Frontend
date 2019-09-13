@@ -8,11 +8,11 @@ export const {saveInfo} = createActions({
 });
 
 export const DEFAULT_INFO: InfoState = {
-  current_money: 0,
   has_fixed_income: false,
   fixed_income: 0,
   income_cycle: 0,
   current_figure: 0,
+  current_money: 0,
   left_day: 0,
   today_expenditure: 0,
   this_month_expenditure: 0,
@@ -26,7 +26,7 @@ const info = handleActions(
       {payload}: Action<InfoState>
     ) => ({
       ...state,
-      payload
+      ...payload
     })
   },
   DEFAULT_INFO
