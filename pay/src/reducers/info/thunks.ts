@@ -7,12 +7,12 @@ import InfoApi from '../../apis/InfoApi';
 export const fetchInfo = () =>
   (dispatch: Dispatch, getState: () => IRootState) => {
     const {
+      info,
       system: {
         session: {
           access
         }
-      },
-      info
+      }
     } = getState();
     const infoApi = new InfoApi(access);
     

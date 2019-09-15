@@ -42,27 +42,33 @@ const Setting = () => {
     }
   }, []);
 
+  const onChangeInput = React.useCallback((
+    {target: {name, value}}: React.ChangeEvent<HTMLInputElement>,
+    type: 'normal' | 'money' = 'normal'
+  ) => {
+    if (containOnlyNumber(type === 'normal' ? value : '')) {
+      setForm(curr => ({
+        ...curr,
+        [name]: type === 'normal'
+          ? value
+          : ''
+      }));
+    }
+
+    return null;
+  }, []);
+
   return (
     <Div>
       <TitleComp/>
       <div>
         <Input
+          name="current_money"
           value={form.current_money}
           placeholder="소지한 돈을 입력하세요."
-          onChange={({target: {value}}) => {
-            if (containOnlyNumber(value)) {
-              setForm(curr => ({
-                ...curr,
-                current_money: value
-              }));
-            }
-            // setForm(curr => ({
-            //   ...curr,
-            //   current_money: 
-            // }));
-          }}
+          onChange={e => onChangeInput(e)}
           // @TODO: form 관련 타입 개선
-          // suffix={!!(form.current_money as string).trim() && '원'}
+          suffix={(form.current_money as string).trim() && '원'}
         />
       </div>
       <LinkBtn

@@ -14,7 +14,7 @@ import {
   UNDEFINED
 } from '../constants/jsTypes';
 
-interface IAllTypes {
+export interface IAllTypes {
   type: TAllTypesToString;
   value: TAllTypes;
 }
@@ -67,7 +67,12 @@ export const ALL_TYPES: IAllTypes[] = [
  * It returns filtered array(ALL_TYPES) that does not contain elements of excludeType.
  */
 
-const notSpecificTypes = (excludeType: TAllTypesToString[]) =>
-  ALL_TYPES.filter(({type}) => !excludeType.includes(type));
+const notSpecificTypes = (excludeType: TAllTypesToString[]) => {
+  if (!Array.isArray(excludeType)) {
+    return false;
+  }
+
+  return ALL_TYPES.filter(({type}) => !excludeType.includes(type));
+};
 
 export default notSpecificTypes;

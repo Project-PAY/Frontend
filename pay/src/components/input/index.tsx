@@ -1,3 +1,5 @@
+// @TODO: Input 컴포넌트 기능에 따라 여러개로 분리
+
 import * as React from 'react';
 import styled from 'styled-components';
 import {$WHTIE} from '../../../styles/variables.types';
