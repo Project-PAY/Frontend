@@ -22,7 +22,7 @@ const Setting = () => {
 
   const [form, setForm] = React.useState<IBaseInfo>({
     current_money: '',
-    has_fixed_income: false,
+    has_fixed_income: true, // initial: false
     fixed_income: '',
     income_cycle: ''
   });
@@ -46,20 +46,28 @@ const Setting = () => {
 
   const onChangeInput = React.useCallback((
     {target: {name, value}}: React.ChangeEvent<HTMLInputElement>,
-    type: 'normal' | 'money' = 'normal'
+    type: 'normal' | 'money' | 'date' = 'normal'
   ) => {
-    if (containOnlyNumber(type === 'normal'
-      ? value
-      : withoutSpecificStr(value, ',')
-    )) {
-      setForm(curr => ({
-        ...curr,
-        [name]: type === 'normal'
-          ? value
-          : withCommaNotation(
+    switch(type) {
+      case 'normal':
+        containOnlyNumber(value) && setForm(curr => ({
+          ...curr,
+          [name]: value
+        }));
+        break;
+      case 'money':
+        containOnlyNumber(withoutSpecificStr(value, ',')) && setForm(curr => ({
+          ...curr,
+          [name]: withCommaNotation(
             withoutSpecificStr(value, ',')
           )
-      }));
+        }));
+        break;
+      case 'date':
+        alert('Hello');
+        break;
+      default:
+        break;
     }
 
     return null;
@@ -82,6 +90,25 @@ const Setting = () => {
           placeholder="고정 수입이 있나요?"
           readOnly
         />
+        {form.has_fixed_income && (
+          <>
+            <Input
+              name="fixed_income"
+              value={form.fixed_income}
+              placeholder="고정 수입을 입력하세요."
+              onChange={e => onChangeInput(e, 'money')}
+              suffix={(form.fixed_income as string).trim() && '원'}
+            />
+            <Input
+              name="income_cycle"
+              value={form.income_cycle}
+              placeholder="수입 주기를 입력하세요."
+              onChange={onChangeInput}
+              suffix={(form.income_cycle as string).trim() && '일'}
+              maxLength={2}
+            />
+          </>
+        )}
       </div>
       <LinkBtn
         text="설정하기"
