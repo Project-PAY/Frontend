@@ -7,6 +7,8 @@ import anonRequired from '../../hocs/anonRequired';
 import useAccessNeededFunc from '../../hooks/useAccessNeededFunc';
 import InfoApi from '../../src/apis/InfoApi';
 import Input from '../../src/components/input';
+import {IBaseInfo} from '../../src/@types/info';
+import containOnlyNumber from '../../src/lib/containOnlyNumber';
 
 const Div = styled.div`
   height: 100%;
@@ -15,6 +17,13 @@ const Div = styled.div`
 
 const Setting = () => {
   const infoApi: InfoApi = useAccessNeededFunc(access => new InfoApi(access));
+
+  const [form, setForm] = React.useState<IBaseInfo>({
+    current_money: '',
+    has_fixed_income: false,
+    fixed_income: '',
+    income_cycle: ''
+  });
 
   // 임시
   const isProperForm = React.useCallback((form: any) => {
@@ -38,7 +47,22 @@ const Setting = () => {
       <TitleComp/>
       <div>
         <Input
-          value=""
+          value={form.current_money}
+          placeholder="소지한 돈을 입력하세요."
+          onChange={({target: {value}}) => {
+            if (containOnlyNumber(value)) {
+              setForm(curr => ({
+                ...curr,
+                current_money: value
+              }));
+            }
+            // setForm(curr => ({
+            //   ...curr,
+            //   current_money: 
+            // }));
+          }}
+          // @TODO: form 관련 타입 개선
+          // suffix={!!(form.current_money as string).trim() && '원'}
         />
       </div>
       <LinkBtn
