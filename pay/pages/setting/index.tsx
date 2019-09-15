@@ -9,6 +9,8 @@ import InfoApi from '../../src/apis/InfoApi';
 import Input from '../../src/components/input';
 import {IBaseInfo} from '../../src/@types/info';
 import containOnlyNumber from '../../src/lib/containOnlyNumber';
+import withoutSpecificStr from '../../src/lib/withoutSpecificStr';
+import withCommaNotation from '../../src/lib/withCommaNotation';
 
 const Div = styled.div`
   height: 100%;
@@ -46,12 +48,17 @@ const Setting = () => {
     {target: {name, value}}: React.ChangeEvent<HTMLInputElement>,
     type: 'normal' | 'money' = 'normal'
   ) => {
-    if (containOnlyNumber(type === 'normal' ? value : '')) {
+    if (containOnlyNumber(type === 'normal'
+      ? value
+      : withoutSpecificStr(value, ',')
+    )) {
       setForm(curr => ({
         ...curr,
         [name]: type === 'normal'
           ? value
-          : ''
+          : withCommaNotation(
+            withoutSpecificStr(value, ',')
+          )
       }));
     }
 
@@ -66,7 +73,7 @@ const Setting = () => {
           name="current_money"
           value={form.current_money}
           placeholder="소지한 돈을 입력하세요."
-          onChange={e => onChangeInput(e)}
+          onChange={e => onChangeInput(e, 'money')}
           // @TODO: form 관련 타입 개선
           suffix={(form.current_money as string).trim() && '원'}
         />
