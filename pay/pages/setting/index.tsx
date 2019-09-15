@@ -6,11 +6,12 @@ import LinkBtn from '../../src/components/common/LinkBtn';
 import anonRequired from '../../hocs/anonRequired';
 import useAccessNeededFunc from '../../hooks/useAccessNeededFunc';
 import InfoApi from '../../src/apis/InfoApi';
-import Input from '../../src/components/input';
+import Input from '../../src/components/Input';
 import {IBaseInfo} from '../../src/@types/info';
 import containOnlyNumber from '../../src/lib/containOnlyNumber';
 import withoutSpecificStr from '../../src/lib/withoutSpecificStr';
 import withCommaNotation from '../../src/lib/withCommaNotation';
+import InputRange from '../../src/components/InputRange';
 
 const Div = styled.div`
   height: 100%;
@@ -50,6 +51,7 @@ const Setting = () => {
   ) => {
     switch(type) {
       case 'normal':
+      case 'date':
         containOnlyNumber(value) && setForm(curr => ({
           ...curr,
           [name]: value
@@ -62,9 +64,6 @@ const Setting = () => {
             withoutSpecificStr(value, ',')
           )
         }));
-        break;
-      case 'date':
-        alert('Hello');
         break;
       default:
         break;
@@ -106,6 +105,14 @@ const Setting = () => {
               onChange={onChangeInput}
               suffix={(form.income_cycle as string).trim() && '일'}
               maxLength={2}
+            />
+            <InputRange
+              min={1}
+              max={31}
+              step={1}
+              value={form.income_cycle || 1}
+              name="income_cycle"
+              onChange={e => onChangeInput(e, 'date')}
             />
           </>
         )}
