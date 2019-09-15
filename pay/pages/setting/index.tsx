@@ -77,6 +77,11 @@ const Setting = () => {
           // @TODO: form 관련 타입 개선
           suffix={(form.current_money as string).trim() && '원'}
         />
+        <Input
+          value=""
+          placeholder="고정 수입이 있나요?"
+          readOnly
+        />
       </div>
       <LinkBtn
         text="설정하기"

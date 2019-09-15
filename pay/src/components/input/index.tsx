@@ -15,6 +15,7 @@ interface Props {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
   suffix?: string;
+  readOnly?: boolean;
 }
 
 const Div = styled.div`
@@ -64,7 +65,8 @@ const Input: React.FC<Props> = React.memo(({
   name,
   onChange,
   className,
-  suffix
+  suffix,
+  readOnly
 }) => (
   <Div>
     <StyledInput
@@ -79,6 +81,7 @@ const Input: React.FC<Props> = React.memo(({
         onChange && onChange(e);
       }}
       className={className}
+      readOnly={readOnly}
     />
     {suffix && (
       <Span>{suffix}</Span>
