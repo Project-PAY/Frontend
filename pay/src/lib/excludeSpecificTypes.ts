@@ -19,7 +19,7 @@ interface IAllTypes {
   value: TAllTypes;
 }
 
-const ALL_TYPES: IAllTypes[] = [
+export const ALL_TYPES: IAllTypes[] = [
   {
     type: ARRAY,
     value: [1, 2, 3, 4, 5]
@@ -61,6 +61,11 @@ const ALL_TYPES: IAllTypes[] = [
     value: Symbol('Pewww')
   }
 ];
+
+/**
+ * @param excludeType - Array which type is TAllTypesToString[]
+ * It returns filtered array(ALL_TYPES) that does not contain elements of excludeType.
+ */
 
 const notSpecificTypes = (excludeType: TAllTypesToString[]) =>
   ALL_TYPES.filter(({type}) => !excludeType.includes(type));

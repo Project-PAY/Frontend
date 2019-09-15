@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import {$WHTIE} from '../../../styles/variables.types';
-import { fontStyleMixin } from '../../../styles/mixins.styles';
+import {fontStyleMixin} from '../../../styles/mixins.styles';
 
 interface Props {
   type?: string;
@@ -12,15 +12,20 @@ interface Props {
   name?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
+  suffix?: string;
 }
+
+const Div = styled.div`
+  position: relative;
+  width: calc(100% - 60px);
+  margin: 0 auto 12px auto;
+`;
 
 const StyledInput = styled.input`
   display: block;
-  position: relative;
-  width: calc(100% - 60px);
+  width: 100%;
   height: 60px;
   border: 4px solid ${$WHTIE};
-  margin: 0 auto 12px auto;
   box-sizing: border-box;
   background-color: transparent;
   ${fontStyleMixin({
@@ -35,26 +40,48 @@ const StyledInput = styled.input`
   }
 `;
 
+const Span = styled.span`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 22px;
+  ${fontStyleMixin({
+    size: 13,
+    family: 'NanumSquare',
+    weight: '600',
+    color: $WHTIE
+  })};
+`;
+
 const Input: React.FC<Props> = React.memo(({
   type = 'text',
   placeholder = '입력해주세요.',
-  value,
+  value = '',
   maxLength = 50,
   disabled = false,
   name,
   onChange,
-  className
+  className,
+  suffix
 }) => (
-  <StyledInput
-    type={type}
-    placeholder={placeholder}
-    value={value}
-    maxLength={maxLength}
-    disabled={disabled}
-    name={name}
-    onChange={onChange}
-    className={className}
-  />
+  <Div>
+    <StyledInput
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      maxLength={maxLength}
+      disabled={disabled}
+      name={name}
+      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+        e.persist();
+        onChange && onChange(e);
+      }}
+      className={className}
+    />
+    {suffix && (
+      <Span>{suffix}</Span>
+    )}
+  </Div>
 ));
 
 export default Input;
