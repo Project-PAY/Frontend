@@ -51,7 +51,6 @@ const Setting = () => {
   ) => {
     switch(type) {
       case 'normal':
-      case 'date':
         containOnlyNumber(value) && setForm(curr => ({
           ...curr,
           [name]: value
@@ -63,6 +62,12 @@ const Setting = () => {
           [name]: withCommaNotation(
             withoutSpecificStr(value, ',')
           )
+        }));
+        break;
+      case 'date':
+        (value === '' || parseInt(value, 10) <= 365) && setForm(curr => ({
+          ...curr,
+          [name]: value
         }));
         break;
       default:
@@ -102,13 +107,12 @@ const Setting = () => {
               name="income_cycle"
               value={form.income_cycle}
               placeholder="수입 주기를 입력하세요."
-              onChange={onChangeInput}
+              onChange={e => onChangeInput(e, 'date')}
               suffix={(form.income_cycle as string).trim() && '일'}
-              maxLength={2}
             />
             <InputRange
               min={1}
-              max={31}
+              max={365}
               step={1}
               value={form.income_cycle || 1}
               name="income_cycle"
