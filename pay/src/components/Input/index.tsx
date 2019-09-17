@@ -60,28 +60,20 @@ const Input: React.FC<Props> = React.memo(({
   type = 'text',
   placeholder = '입력해주세요.',
   value = '',
-  maxLength = 50,
-  disabled = false,
-  name,
   onChange,
-  className,
   suffix,
-  readOnly
+  ...props
 }) => (
   <Div>
     <StyledInput
       type={type}
       placeholder={placeholder}
       value={value}
-      maxLength={maxLength}
-      disabled={disabled}
-      name={name}
       onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
         e.persist();
         onChange && onChange(e);
       }}
-      className={className}
-      readOnly={readOnly}
+      {...props}
     />
     {suffix && (
       <Span>{suffix}</Span>
