@@ -4,14 +4,9 @@ import {$MAIN} from '../../styles/variables.types';
 import TitleComp from '../../src/components/common/TitleComp';
 import LinkBtn from '../../src/components/common/LinkBtn';
 import anonRequired from '../../hocs/anonRequired';
-import useAccessNeededFunc from '../../hooks/useAccessNeededFunc';
-import InfoApi from '../../src/apis/InfoApi';
-import Input from '../../src/components/Input';
-import {IBaseInfo} from '../../src/@types/info';
-import containOnlyNumber from '../../src/lib/containOnlyNumber';
-import withoutSpecificStr from '../../src/lib/withoutSpecificStr';
-import withCommaNotation from '../../src/lib/withCommaNotation';
-import InputRange from '../../src/components/InputRange';
+import Input from '../../src/components/Input/Input';
+import InputRange from '../../src/components/Input/InputRange';
+import useInput from '../../src/components/Input/useInput';
 
 const Div = styled.div`
   height: 100%;
@@ -19,63 +14,12 @@ const Div = styled.div`
 `;
 
 const Setting = () => {
-  const infoApi: InfoApi = useAccessNeededFunc(access => new InfoApi(access));
-
-  const [form, setForm] = React.useState<IBaseInfo>({
-    current_money: '',
-    has_fixed_income: true, // initial: false
-    fixed_income: '',
-    income_cycle: ''
-  });
-
-  // 임시
-  const isProperForm = React.useCallback((form: any) => {
-    return [true, {}]; // OR [false, 'Error Text']
-  }, []);
-
-  const onCompleteSetting = React.useCallback(() => {
-    const [isProper, form] = isProperForm({});
-
-    if (isProper) {
-      // API 호출 및 action dispatch
-      alert('Hello');
-      console.dir(form);
-    } else {
-      alert(isProper);
-    }
-  }, []);
-
-  const onChangeInput = React.useCallback((
-    {target: {name, value}}: React.ChangeEvent<HTMLInputElement>,
-    type: 'normal' | 'money' | 'date' = 'normal'
-  ) => {
-    switch(type) {
-      case 'normal':
-        containOnlyNumber(value) && setForm(curr => ({
-          ...curr,
-          [name]: value
-        }));
-        break;
-      case 'money':
-        containOnlyNumber(withoutSpecificStr(value, ',')) && setForm(curr => ({
-          ...curr,
-          [name]: withCommaNotation(
-            withoutSpecificStr(value, ',')
-          )
-        }));
-        break;
-      case 'date':
-        (value === '' || parseInt(value, 10) <= 365) && setForm(curr => ({
-          ...curr,
-          [name]: value
-        }));
-        break;
-      default:
-        break;
-    }
-
-    return null;
-  }, []);
+  const {
+    form,
+    isProperForm,
+    onCompleteSetting,
+    onChangeInput
+  } = useInput(); 
 
   return (
     <Div>
@@ -85,7 +29,9 @@ const Setting = () => {
           name="current_money"
           value={form.current_money}
           placeholder="소지한 돈을 입력하세요."
-          onChange={e => onChangeInput(e, 'money')}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            onChangeInput(e, 'money')
+          }
           // @TODO: form 관련 타입 개선
           suffix={(form.current_money as string).trim() && '원'}
         />
@@ -100,14 +46,18 @@ const Setting = () => {
               name="fixed_income"
               value={form.fixed_income}
               placeholder="고정 수입을 입력하세요."
-              onChange={e => onChangeInput(e, 'money')}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                onChangeInput(e, 'money')
+              }
               suffix={(form.fixed_income as string).trim() && '원'}
             />
             <Input
               name="income_cycle"
               value={form.income_cycle}
               placeholder="수입 주기를 입력하세요."
-              onChange={e => onChangeInput(e, 'date')}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                onChangeInput(e, 'date')
+              }
               suffix={(form.income_cycle as string).trim() && '일'}
             />
             <InputRange
@@ -116,7 +66,9 @@ const Setting = () => {
               step={1}
               value={form.income_cycle || 1}
               name="income_cycle"
-              onChange={e => onChangeInput(e, 'date')}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                onChangeInput(e, 'date')
+              }
             />
           </>
         )}
