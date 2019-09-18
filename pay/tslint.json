@@ -28,6 +28,8 @@
         "react-hooks-nesting": "warning",
         "disable-next-line": "eofline",
         "trailing-comma": false,
+        "no-unused-variable": false,
+        "object-literal-sort-keys": false
     },
     "rulesDirectory": [],
     "linterOptions": {

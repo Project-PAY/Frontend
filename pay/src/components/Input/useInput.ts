@@ -16,7 +16,6 @@ const useInput = () => {
     income_cycle: ''
   });
 
-  // 임시
   const isProperForm = React.useCallback((form: any) => {
     return [true, {}]; // OR [false, 'Error Text']
   }, []);
