@@ -14,7 +14,7 @@ interface Props {
   name?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
-  suffix?: string;
+  additional?: React.ReactNode | React.ComponentType;
   readOnly?: boolean;
 }
 
@@ -43,25 +43,12 @@ const StyledInput = styled.input`
   }
 `;
 
-const Span = styled.span`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 22px;
-  ${fontStyleMixin({
-    size: 13,
-    family: 'NanumSquare',
-    weight: '600',
-    color: $WHTIE
-  })};
-`;
-
 const Input: React.FC<Props> = React.memo(({
   type = 'text',
   placeholder = '입력해주세요.',
   value = '',
   onChange,
-  suffix,
+  additional,
   ...props
 }) => (
   <Div>
@@ -75,9 +62,7 @@ const Input: React.FC<Props> = React.memo(({
       }}
       {...props}
     />
-    {suffix && (
-      <Span>{suffix}</Span>
-    )}
+    {additional}
   </Div>
 ));
 

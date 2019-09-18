@@ -1,16 +1,30 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import {$MAIN} from '../../styles/variables.types';
+import {$MAIN, $WHTIE} from '../../styles/variables.types';
 import TitleComp from '../../src/components/common/TitleComp';
 import LinkBtn from '../../src/components/common/LinkBtn';
 import anonRequired from '../../hocs/anonRequired';
 import Input from '../../src/components/Input/Input';
 import InputRange from '../../src/components/Input/InputRange';
 import useInput from '../../src/components/Input/useInput';
+import {fontStyleMixin} from '../../styles/mixins.styles';
 
 const Div = styled.div`
   height: 100%;
   background-color: ${$MAIN};
+`;
+
+const Span = styled.span`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 22px;
+  ${fontStyleMixin({
+    size: 13,
+    family: 'NanumSquare',
+    weight: '600',
+    color: $WHTIE
+  })};
 `;
 
 const Setting = () => {
@@ -19,7 +33,7 @@ const Setting = () => {
     isProperForm,
     onCompleteSetting,
     onChangeInput
-  } = useInput(); 
+  } = useInput();
 
   return (
     <Div>
@@ -33,7 +47,9 @@ const Setting = () => {
             onChangeInput(e, 'money')
           }
           // @TODO: form 관련 타입 개선
-          suffix={(form.current_money as string).trim() && '원'}
+          additional={(form.current_money as string).trim() && (
+            <Span>원</Span>
+          )}
         />
         <Input
           value=""
@@ -49,7 +65,9 @@ const Setting = () => {
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 onChangeInput(e, 'money')
               }
-              suffix={(form.fixed_income as string).trim() && '원'}
+              additional={(form.fixed_income as string).trim() && (
+                <Span>원</Span>
+              )}
             />
             <Input
               name="income_cycle"
@@ -58,7 +76,9 @@ const Setting = () => {
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 onChangeInput(e, 'date')
               }
-              suffix={(form.income_cycle as string).trim() && '일'}
+              additional={(form.income_cycle as string).trim() && (
+                <Span>일</Span>
+              )}
             />
             <InputRange
               min={1}
