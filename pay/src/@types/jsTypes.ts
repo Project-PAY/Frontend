@@ -16,7 +16,7 @@ export type TAllTypes = string
   | null
   | undefined
   | Function
-  | symbol;;
+  | symbol;
 
 export type TAllTypesToString = TString
   | TArray

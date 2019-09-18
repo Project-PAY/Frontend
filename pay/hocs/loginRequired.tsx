@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useSelector} from 'react-redux';
 import {IRootState} from '../src/reducers';
-import Page401 from '../pages/Page401';
+import Page401 from '../pages/common/Page401';
 import isEqual from 'lodash/isEqual';
 
 const loginRequired = <T extends {}>(Target: React.ComponentType) => {

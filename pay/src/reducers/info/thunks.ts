@@ -15,7 +15,7 @@ export const fetchInfo = () =>
       }
     } = getState();
     const infoApi = new InfoApi(access);
-    
+
     if (access && isEqual(info, DEFAULT_INFO)) {
       infoApi.getInfo()
         .then(({data: {result}}) => {

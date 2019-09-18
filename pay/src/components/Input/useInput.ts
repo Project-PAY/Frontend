@@ -69,7 +69,7 @@ const useInput = () => {
     isProperForm,
     onCompleteSetting,
     onChangeInput
-  }
+  };
 };
 
 export default useInput;

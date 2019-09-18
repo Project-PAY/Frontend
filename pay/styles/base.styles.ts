@@ -16,20 +16,20 @@ const baseStyles = css.global`
   input:focus{
     outline: none;
   }
-  
+
   article, aside, details, figcaption, figure,
   footer, header, hgroup, menu, nav, section {
     display: block;
   }
-  
+
   ol, ul {
     list-style: none;
   }
-  
+
   blockquote, q {
     quotes: none;
   }
-  
+
   blockquote:before, blockquote:after,
   q:before, q:after {
     content: '';

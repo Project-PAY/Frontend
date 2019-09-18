@@ -2,7 +2,6 @@ import withCommaNotation from '../withCommaNotation';
 import excludeSpecificTypes, {IAllTypes} from '../excludeSpecificTypes';
 import {STRING} from '../../constants/jsTypes';
 
-
 describe('withCommaNotation 메서드 테스트', () => {
   it('String 타입이 아닌 값을 파라미터로 전달하였을 경우, 전달한 값 그대로 반환', () => {
     const exceptString = excludeSpecificTypes([STRING]) as IAllTypes[];

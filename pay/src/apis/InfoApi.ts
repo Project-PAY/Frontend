@@ -7,7 +7,7 @@ class InfoApi extends Api {
     super({
       token,
       model: 'info'
-    }); 
+    });
   }
 
   getInfo() {

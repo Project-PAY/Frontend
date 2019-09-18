@@ -16,7 +16,7 @@ export const fontStyleMixin = (font: IFontStyleMixin = {}) => `
   color: ${font.color ? font.color : '#333'};
   ${font.size ? `font-size: ${font.size}px`: ``};
   ${font.weight ? `font-weight: ${font.weight}`: ``};
-  ${font.family ? `font-family: '${font.family}'`: ``}; 
+  ${font.family ? `font-family: '${font.family}'`: ``};
 `;
 
 export const opacityMixin = (opc: number) => `

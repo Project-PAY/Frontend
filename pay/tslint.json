@@ -29,7 +29,14 @@
         "disable-next-line": "eofline",
         "trailing-comma": false,
         "no-unused-variable": false,
-        "object-literal-sort-keys": false
+        "no-unused-expression": false,
+        "object-literal-sort-keys": false,
+        "arrow-parens": false,
+        "whitespace": false,
+        "interface-name": false,
+        "ban-types": false,
+        "no-empty-interface": false,
+        "no-empty": false
     },
     "rulesDirectory": [],
     "linterOptions": {

@@ -40,7 +40,7 @@ interface Props extends RouteComponentProps {
 
 const Splash: React.FC<Props> = ({history}) => {
   const {session: {access}} = useSelector(({system}: IRootState) => system);
-  
+
   React.useEffect(() => {
     setTimeout(() => {
       const to = access ? '/main' : '/welcome';

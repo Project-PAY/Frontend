@@ -2,7 +2,7 @@ import {ONLY_NUMBER_REGEX} from "../constants/regex";
 
 /**
  * @param data - Data which type is String.
- * Returns true if data contains only number. (else false) 
+ * Returns true if data contains only number. (else false)
  */
 
 const containOnlyNumber = (data: string) => {
