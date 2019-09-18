@@ -7,7 +7,9 @@ import anonRequired from '../../hocs/anonRequired';
 import Input from '../../src/components/Input/Input';
 import InputRange from '../../src/components/Input/InputRange';
 import useInput from '../../src/components/Input/useInput';
-import {fontStyleMixin} from '../../styles/mixins.styles';
+import {fontStyleMixin, backgroundImgMixin} from '../../styles/mixins.styles';
+import IconDownArrow from '../../src/assets/icons/icon-down-arrow.png';
+import IconUpArrow from '../../src/assets/icons/icon-up-arrow.png';
 
 const Div = styled.div`
   height: 100%;
@@ -27,12 +29,43 @@ const Span = styled.span`
   })};
 `;
 
+const ArrowDiv = styled.div<{isOpened: boolean;}>`
+  box-sizing: border-box;
+  position: absolute;
+  width: 60px;
+  height: 58px;
+  border-left: 4px solid ${$WHTIE};
+  top: 1px;
+  right: 3px;
+  cursor: pointer;
+  ${({isOpened}) => backgroundImgMixin({
+    img: isOpened ? IconUpArrow : IconDownArrow,
+    size: '20px'
+  })};
+`;
+
+const SuffixSpan: React.FC<{text: string}> = React.memo(({text}) => (
+  <Span>{text}</Span>
+));
+
+const SetOptionBtn: React.FC<{
+  isOpened: boolean;
+  onToggleOption: () => void;
+}> = React.memo(({isOpened, onToggleOption}) => (
+  <ArrowDiv
+    isOpened={isOpened}
+    onClick={onToggleOption}
+  />
+));
+
 const Setting = () => {
   const {
     form,
+    setForm,
     isProperForm,
     onCompleteSetting,
-    onChangeInput
+    onChangeInput,
+    onToggleOption
   } = useInput();
 
   return (
@@ -48,13 +81,19 @@ const Setting = () => {
           }
           // @TODO: form 관련 타입 개선
           additional={(form.current_money as string).trim() && (
-            <Span>원</Span>
+            <SuffixSpan text="원"/>
           )}
         />
         <Input
           value=""
           placeholder="고정 수입이 있나요?"
           readOnly
+          additional={(
+            <SetOptionBtn
+              isOpened={form.has_fixed_income}
+              onToggleOption={onToggleOption}
+            />
+          )}
         />
         {form.has_fixed_income && (
           <>
@@ -66,7 +105,7 @@ const Setting = () => {
                 onChangeInput(e, 'money')
               }
               additional={(form.fixed_income as string).trim() && (
-                <Span>원</Span>
+                <SuffixSpan text="원"/>
               )}
             />
             <Input
@@ -77,7 +116,7 @@ const Setting = () => {
                 onChangeInput(e, 'date')
               }
               additional={(form.income_cycle as string).trim() && (
-                <Span>일</Span>
+                <SuffixSpan text="일"/>
               )}
             />
             <InputRange

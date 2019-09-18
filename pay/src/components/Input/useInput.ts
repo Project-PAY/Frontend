@@ -11,16 +11,16 @@ const useInput = () => {
 
   const [form, setForm] = React.useState<IBaseInfo>({
     current_money: '',
-    has_fixed_income: true, // initial: false
+    has_fixed_income: false,
     fixed_income: '',
     income_cycle: ''
   });
 
-  const isProperForm = React.useCallback((form: any) => {
+  const isProperForm = (form: any) => {
     return [true, {}]; // OR [false, 'Error Text']
-  }, []);
+  };
 
-  const onCompleteSetting = React.useCallback(() => {
+  const onCompleteSetting = () => {
     const [isProper, form] = isProperForm({});
 
     if (isProper) {
@@ -30,7 +30,12 @@ const useInput = () => {
     } else {
       alert(isProper);
     }
-  }, []);
+  };
+
+  const onToggleOption = () => setForm(curr => ({
+    ...curr,
+    has_fixed_income: !curr.has_fixed_income
+  }));
 
   const onChangeInput = React.useCallback((
     {target: {name, value}}: React.ChangeEvent<HTMLInputElement>,
@@ -66,9 +71,11 @@ const useInput = () => {
 
   return {
     form,
+    setForm,
     isProperForm,
     onCompleteSetting,
-    onChangeInput
+    onChangeInput,
+    onToggleOption
   };
 };
 
