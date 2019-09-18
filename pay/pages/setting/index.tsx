@@ -10,6 +10,7 @@ import useInput from '../../src/components/Input/useInput';
 import {fontStyleMixin, backgroundImgMixin} from '../../styles/mixins.styles';
 import IconDownArrow from '../../src/assets/icons/icon-down-arrow.png';
 import IconUpArrow from '../../src/assets/icons/icon-up-arrow.png';
+import {RouteComponentProps} from 'react-router';
 
 const Div = styled.div`
   height: 100%;
@@ -44,6 +45,9 @@ const ArrowDiv = styled.div<{isOpened: boolean;}>`
   })};
 `;
 
+interface Props extends RouteComponentProps {
+}
+
 const SuffixSpan: React.FC<{text: string}> = React.memo(({text}) => (
   <Span>{text}</Span>
 ));
@@ -58,15 +62,13 @@ const SetOptionBtn: React.FC<{
   />
 ));
 
-const Setting = () => {
+const Setting: React.FC<Props> = ({history}) => {
   const {
     form,
-    setForm,
-    isProperForm,
     onCompleteSetting,
     onChangeInput,
     onToggleOption
-  } = useInput();
+  } = useInput(history);
 
   return (
     <Div>
@@ -79,8 +81,7 @@ const Setting = () => {
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             onChangeInput(e, 'money')
           }
-          // @TODO: form 관련 타입 개선
-          additional={(form.current_money as string).trim() && (
+          additional={form.current_money.trim() && (
             <SuffixSpan text="원"/>
           )}
         />
@@ -104,7 +105,7 @@ const Setting = () => {
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 onChangeInput(e, 'money')
               }
-              additional={(form.fixed_income as string).trim() && (
+              additional={form.fixed_income.trim() && (
                 <SuffixSpan text="원"/>
               )}
             />
@@ -115,7 +116,7 @@ const Setting = () => {
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 onChangeInput(e, 'date')
               }
-              additional={(form.income_cycle as string).trim() && (
+              additional={form.income_cycle.trim() && (
                 <SuffixSpan text="일"/>
               )}
             />
@@ -135,7 +136,9 @@ const Setting = () => {
       <LinkBtn
         text="설정하기"
         type="button"
-        // onClick={} - call onCompleteSetting
+        onClick={() => {
+          onCompleteSetting(form);
+        }}
       />
     </Div>
   );

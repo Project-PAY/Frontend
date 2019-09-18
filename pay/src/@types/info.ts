@@ -1,14 +1,14 @@
 export interface IBaseInfo {
-  current_money: number | string;
+  current_money: string;
   has_fixed_income: boolean;
-  fixed_income?: number | string;
-  income_cycle?: number | string;
+  fixed_income?: string;
+  income_cycle?: string;
 }
 
 export interface InfoState extends IBaseInfo {
-  current_figure: number | string;
-  left_day?: number | string;
-  today_expenditure: number | string;
-  this_month_expenditure: number | string;
-  last_month_expenditure: number | string;
+  current_figure: string;
+  left_day?: string;
+  today_expenditure: string;
+  this_month_expenditure: string;
+  last_month_expenditure: string;
 }

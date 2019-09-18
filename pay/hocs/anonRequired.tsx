@@ -5,7 +5,7 @@ import {useSelector} from 'react-redux';
 import isEqual from 'lodash/isEqual';
 
 // @TODO: AnonRequired any 타입 수정
-const anonRequired = <T extends {}>(Target: React.ComponentType) => {
+const anonRequired = <T extends {}>(Target: React.FC<T>) => {
   const AnonRequired = ({history, ...props}: /* T & RouteComponentProps */ any) => {
     const {session: {access}} = useSelector(
       ({system}: IRootState) => system,

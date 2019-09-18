@@ -9,14 +9,14 @@ export const {saveInfo} = createActions({
 
 export const DEFAULT_INFO: InfoState = {
   has_fixed_income: false,
-  fixed_income: 0,
-  income_cycle: 0,
-  current_figure: 0,
-  current_money: 0,
-  left_day: 0,
-  today_expenditure: 0,
-  this_month_expenditure: 0,
-  last_month_expenditure: 0
+  fixed_income: '',
+  income_cycle: '',
+  current_figure: '',
+  current_money: '',
+  left_day: '',
+  today_expenditure: '',
+  this_month_expenditure: '',
+  last_month_expenditure: ''
 };
 
 const info = handleActions(

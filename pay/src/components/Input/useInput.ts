@@ -5,8 +5,10 @@ import {IBaseInfo} from '../../@types/info';
 import containOnlyNumber from '../../lib/containOnlyNumber';
 import withoutSpecificStr from '../../lib/withoutSpecificStr';
 import withCommaNotation from '../../lib/withCommaNotation';
+import {Dig} from '../../@types/common';
+import {RouteComponentProps} from 'react-router';
 
-const useInput = () => {
+const useInput = (history: Dig<RouteComponentProps, 'history'>) => {
   const infoApi: InfoApi = useAccessNeededFunc(access => new InfoApi(access));
 
   const [form, setForm] = React.useState<IBaseInfo>({
@@ -16,27 +18,56 @@ const useInput = () => {
     income_cycle: ''
   });
 
-  const isProperForm = (form: any) => {
-    return [true, {}]; // OR [false, 'Error Text']
+  const isProperForm = (form: IBaseInfo): [boolean, (string | IBaseInfo)] => {
+    const {
+      current_money,
+      has_fixed_income,
+      fixed_income,
+      income_cycle
+    } = form;
+
+    if (!current_money.trim()) {
+      return [false, '소지한 돈을 입력해주세요!'];
+    } else if (has_fixed_income && !fixed_income.trim()) {
+      return [false, '고정 수입을 입력해주세요!'];
+    } else if (has_fixed_income && (!income_cycle || parseInt(income_cycle, 10) === 0)) {
+      return [false, '수입 주기를 입력해주세요!'];
+    }
+
+    return [true, {
+      current_money: withoutSpecificStr(current_money, ','),
+      has_fixed_income,
+      fixed_income: withoutSpecificStr(fixed_income, ','),
+      income_cycle
+    }];
   };
 
-  const onCompleteSetting = () => {
-    const [isProper, form] = isProperForm({});
+  const onCompleteSetting = (form: IBaseInfo) => {
+    const [isProper, result] = isProperForm(form);
 
     if (isProper) {
-      // API 호출 및 action dispatch
-      alert('Hello');
-      console.dir(form);
+      // API가 없는 상황이므로 임시 주석 처리
+      // infoApi.setBaseInfo(result as IBaseInfo)
+      //   .then(() => {
+      //     history.push('/main');
+      //   })
+      //   .catch(err => {
+      //     console.error(err);
+      //   });
+      history.push('/main');
     } else {
-      alert(isProper);
+      alert(result);
     }
   };
 
   const onToggleOption = () => setForm(curr => ({
     ...curr,
-    has_fixed_income: !curr.has_fixed_income
+    has_fixed_income: !curr.has_fixed_income,
+    fixed_income: '',
+    income_cycle: ''
   }));
 
+  // @TODO: useCallback에 대한 정확한 조사
   const onChangeInput = React.useCallback((
     {target: {name, value}}: React.ChangeEvent<HTMLInputElement>,
     type: 'normal' | 'money' | 'date' = 'normal'
@@ -71,8 +102,6 @@ const useInput = () => {
 
   return {
     form,
-    setForm,
-    isProperForm,
     onCompleteSetting,
     onChangeInput,
     onToggleOption
