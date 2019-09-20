@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import {$MAIN, $WHTIE} from '../../styles/variables.types';
-import TitleComp from '../../src/components/common/TitleComp';
-import LinkBtn from '../../src/components/common/LinkBtn';
+import TitleComp from '../../src/components/TitleComp';
+import LinkBtn from '../../src/components/LinkBtn';
 import anonRequired from '../../hocs/anonRequired';
 import Input from '../../src/components/Input/Input';
 import InputRange from '../../src/components/Input/InputRange';

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import {$MAIN} from '../../styles/variables.types';
-import TitleComp from '../../src/components/common/TitleComp';
+import TitleComp from '../../src/components/TitleComp';
 import {backgroundImgMixin} from '../../styles/mixins.styles';
 import backgroundImg from '../../src/assets/images/img-setting-background.png';
-import LinkBtn from '../../src/components/common/LinkBtn';
+import LinkBtn from '../../src/components/LinkBtn';
 import anonRequired from '../../hocs/anonRequired';
 
 const Div = styled.div`
