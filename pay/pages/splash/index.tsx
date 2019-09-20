@@ -6,6 +6,7 @@ import styled, {keyframes} from 'styled-components';
 import {SECOND} from '../../src/constants/times';
 import {$MAIN, $WHTIE} from '../../styles/variables.types';
 import {fontStyleMixin} from '../../styles/mixins.styles';
+import OGMetaHead from '../../src/components/common/OGMetaHead';
 
 const spacingLetterAnimation = keyframes`
   from {
@@ -50,6 +51,7 @@ const Splash: React.FC<Props> = ({history}) => {
 
   return (
     <Div>
+      <OGMetaHead/>
       <Span>PAY</Span>
     </Div>
   );

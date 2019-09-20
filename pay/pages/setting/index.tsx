@@ -11,6 +11,7 @@ import {fontStyleMixin, backgroundImgMixin} from '../../styles/mixins.styles';
 import IconDownArrow from '../../src/assets/icons/icon-down-arrow.png';
 import IconUpArrow from '../../src/assets/icons/icon-up-arrow.png';
 import {RouteComponentProps} from 'react-router';
+import OGMetaHead from '../../src/components/common/OGMetaHead';
 
 const Div = styled.div`
   height: 100%;
@@ -72,6 +73,7 @@ const Setting: React.FC<Props> = ({history}) => {
 
   return (
     <Div>
+      <OGMetaHead title="기본 설정"/>
       <TitleComp/>
       <div>
         <Input

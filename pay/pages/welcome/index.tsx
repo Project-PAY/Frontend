@@ -6,6 +6,7 @@ import {backgroundImgMixin} from '../../styles/mixins.styles';
 import backgroundImg from '../../src/assets/images/img-setting-background.png';
 import LinkBtn from '../../src/components/LinkBtn';
 import anonRequired from '../../hocs/anonRequired';
+import OGMetaHead from '../../src/components/common/OGMetaHead';
 
 const Div = styled.div`
   height: 100%;
@@ -23,6 +24,7 @@ const BackgroundImg = styled.div`
 
 const Welcome = () => (
   <Div>
+    <OGMetaHead title="환영합니다!"/>
     <TitleComp/>
     <BackgroundImg/>
     <LinkBtn
