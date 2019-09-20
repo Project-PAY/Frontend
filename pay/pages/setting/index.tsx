@@ -46,6 +46,10 @@ const ArrowDiv = styled.div<{isOpened: boolean;}>`
   })};
 `;
 
+const CurrentMoneyInput = styled(Input)`
+  margin-top: 34px;
+`;
+
 interface Props extends RouteComponentProps {
 }
 
@@ -76,7 +80,7 @@ const Setting: React.FC<Props> = ({history}) => {
       <OGMetaHead title="기본 설정"/>
       <TitleComp/>
       <div>
-        <Input
+        <CurrentMoneyInput
           name="current_money"
           value={form.current_money}
           placeholder="소지한 돈을 입력하세요."
