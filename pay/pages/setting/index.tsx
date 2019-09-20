@@ -42,7 +42,8 @@ const ArrowDiv = styled.div<{isOpened: boolean;}>`
   cursor: pointer;
   ${({isOpened}) => backgroundImgMixin({
     img: isOpened ? IconUpArrow : IconDownArrow,
-    size: '20px'
+    size: '20px',
+    color: isOpened ? $WHTIE : 'transparent'
   })};
 `;
 
