@@ -9,6 +9,10 @@ const baseStyles = css.global`
     -moz-osx-font-smoothing: grayscale;
   }
 
+  h1 {
+    margin-top: 0;
+  }
+
   body > div {
     height: 100%;
   }

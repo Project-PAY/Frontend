@@ -15,7 +15,6 @@ const commonHeadingStyle = (size: number) => (
 );
 
 const H1 = styled.h1`
-  margin-top: 0;
   padding-top: 90px;
   letter-spacing: -2px;
   ${commonHeadingStyle(40)};
