@@ -9,6 +9,7 @@ import withCommaNotation from '../src/lib/withCommaNotation';
 import Bar from '../src/components/Bar';
 import menus from '../src/components/Info/menus';
 import Info from '../src/components/Info';
+import {Link} from 'react-router-dom';
 
 const Div = styled.div`
   height: 100%;
@@ -96,10 +97,12 @@ const Main = () => {
         />
         <Span>Total</Span>
         <H1>₩ {withCommaNotation('3247591')}</H1>
-        <PlusImg
-          src={plus}
-          alt="수입/지출 추가"
-        />
+        <Link to="/register">
+          <PlusImg
+            src={plus}
+            alt="수입/지출 추가"
+          />
+        </Link>
       </Header>
       <Ul>
         {menus(TEST_DATA).map(data => (
