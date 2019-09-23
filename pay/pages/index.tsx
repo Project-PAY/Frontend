@@ -72,7 +72,7 @@ const BarSpace = styled.div`
 const BAR_HEIGHTS = [140, 76, 108, 123, 33, 169, 103];
 
 const TEST_DATA = {
-  current_money: '1429000',
+  current_money: '3247591',
   current_figure: '95',
   left_day: '20',
   today_expenditure: '250000',

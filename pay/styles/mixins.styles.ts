@@ -31,3 +31,10 @@ export const backgroundImgMixin = (background: IBackgroundImgMixin = {} as IBack
   ${background.color && `background-color: ${background.color}`};
   background-repeat: no-repeat;
 `;
+
+export const verticalAlignMixin = (additional?: string) => `
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  ${additional};
+`;

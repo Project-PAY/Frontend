@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import {$BORDER, $BLACK} from '../../../styles/variables.types';
 import {IMenu} from './menus';
-import {fontStyleMixin, opacityMixin} from '../../../styles/mixins.styles';
+import {fontStyleMixin, opacityMixin, verticalAlignMixin} from '../../../styles/mixins.styles';
 
 const Li = styled.li`
   position: relative;
@@ -11,12 +11,9 @@ const Li = styled.li`
   margin: 0 20px;
 `;
 
-// @TODO: 수직 정렬 코드 mixins로 분리
 const Img = styled.img<{isMoneyType: boolean;}>`
   width: ${({isMoneyType}) => isMoneyType ? '16px' : '20px'};
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  ${verticalAlignMixin()};
 `;
 
 const H2 = styled.h2`
@@ -44,9 +41,7 @@ const Span = styled.span`
     size: 14,
     weight: '600'
   })};
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  ${verticalAlignMixin()};
   right: 0;
 `;
 
