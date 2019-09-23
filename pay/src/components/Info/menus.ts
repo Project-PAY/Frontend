@@ -4,7 +4,15 @@ import dollarIcon from '../../assets/icons/icon-dollar.png';
 import resetIcon from '../../assets/icons/icon-reset.png';
 import withCommaNotation from "../../lib/withCommaNotation";
 
-interface IMenuType {
+type TProps = Pick<InfoState, 'current_money'
+  | 'current_figure'
+  | 'left_day'
+  | 'today_expenditure'
+  | 'this_month_expenditure'
+  | 'last_month_expenditure'
+>;
+
+export interface IMenu {
   title: string;
   subTitle: string;
   src: string;
@@ -12,7 +20,7 @@ interface IMenuType {
   suffix: string;
 }
 
-const menus = (data: InfoState): IMenuType[] => {
+const menus = (data: TProps): IMenu[] => {
   const {
     current_money,
     current_figure,
@@ -34,7 +42,7 @@ const menus = (data: InfoState): IMenuType[] => {
       title: '남은 돈',
       subTitle: '현재 남은 돈을 나타냅니다.',
       src: dollarIcon,
-      value: current_money,
+      value: withCommaNotation(current_money),
       suffix: '원'
     },
     {

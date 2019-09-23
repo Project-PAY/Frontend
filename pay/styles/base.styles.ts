@@ -9,8 +9,13 @@ const baseStyles = css.global`
     -moz-osx-font-smoothing: grayscale;
   }
 
-  h1 {
+  h1, h3 {
     margin-top: 0;
+  }
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
   body > div {
@@ -28,6 +33,8 @@ const baseStyles = css.global`
 
   ol, ul {
     list-style: none;
+    padding-inline-start: 0;
+    margin-top: 0;
   }
 
   blockquote, q {
