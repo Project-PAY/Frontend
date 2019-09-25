@@ -10,6 +10,7 @@ import Bar from '../src/components/Bar';
 import menus from '../src/components/Info/menus';
 import Info from '../src/components/Info';
 import {Link} from 'react-router-dom';
+import Sidebar from '../src/components/Sidebar';
 
 const Div = styled.div`
   height: 100%;
@@ -82,9 +83,15 @@ const TEST_DATA = {
 
 // @TODO: loginRequired hoc 적용
 const Main = () => {
+  const [isOpened, setIsOpened] = React.useState(false);
+
   return (
     <Div>
       <OGMetaHead title="메인페이지"/>
+      <Sidebar
+        isOpened={isOpened}
+        closeSidebar={() => setIsOpened(false)}
+      />
       <Header>
         <BarSpace>
           {BAR_HEIGHTS.map(height => (
@@ -94,6 +101,7 @@ const Main = () => {
         <SidebarImg
           src={sidebar}
           alt="사이드바 열기"
+          onClick={() => setIsOpened(true)}
         />
         <Span>Total</Span>
         <H1>₩ {withCommaNotation('3247591')}</H1>
