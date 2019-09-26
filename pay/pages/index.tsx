@@ -95,7 +95,10 @@ const Main = () => {
       <Header>
         <BarSpace>
           {BAR_HEIGHTS.map(height => (
-            <Bar height={height}/>
+            <Bar
+              key={height}
+              height={height}
+            />
           ))}
         </BarSpace>
         <SidebarImg
@@ -114,7 +117,10 @@ const Main = () => {
       </Header>
       <Ul>
         {menus(TEST_DATA).map(data => (
-          <Info {...data}/>
+          <Info
+            key={data.id}
+            {...data}
+          />
         ))}
       </Ul>
     </Div>
