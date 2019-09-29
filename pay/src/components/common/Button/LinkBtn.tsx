@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {Link} from 'react-router-dom';
 import styled, {css} from 'styled-components';
-import {fontStyleMixin} from '../../../styles/mixins.styles';
-import {$WHTIE, $ORANGE} from '../../../styles/variables.types';
+import {fontStyleMixin} from '../../../../styles/mixins.styles';
+import {$WHTIE, $ORANGE} from '../../../../styles/variables.types';
 
 interface Props {
   text: string;
