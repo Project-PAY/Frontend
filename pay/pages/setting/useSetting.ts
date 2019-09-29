@@ -66,8 +66,8 @@ const useSetting = (history: Dig<RouteComponentProps, 'history'>) => {
     income_cycle: ''
   }));
 
-  const onSetForm = (e: React.ChangeEvent<HTMLInputElement>, type: TInputType) => {
-    const {name, value} = onChangeInput(e, 'money');
+  const onSetForm = (e: React.ChangeEvent<HTMLInputElement>, type: TInputType, prevState: string) => {
+    const {name, value} = onChangeInput(e, type, prevState);
 
     setForm(curr => ({
       ...curr,

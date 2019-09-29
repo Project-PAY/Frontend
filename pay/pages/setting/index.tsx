@@ -70,7 +70,7 @@ const Setting: React.FC<Props> = ({history}) => {
           value={form.current_money}
           placeholder="소지한 돈을 입력하세요."
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            onSetForm(e, 'money')
+            onSetForm(e, 'money', form.current_money)
           }
           additional={form.current_money.trim() && (
             <SuffixSpan text="원"/>
@@ -94,7 +94,7 @@ const Setting: React.FC<Props> = ({history}) => {
               value={form.fixed_income}
               placeholder="고정 수입을 입력하세요."
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                onSetForm(e, 'money')
+                onSetForm(e, 'money', form.fixed_income)
               }
               additional={form.fixed_income.trim() && (
                 <SuffixSpan text="원"/>
@@ -105,7 +105,7 @@ const Setting: React.FC<Props> = ({history}) => {
               value={form.income_cycle}
               placeholder="수입 주기를 입력하세요."
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                onSetForm(e, 'date')
+                onSetForm(e, 'date', form.income_cycle)
               }
               additional={form.income_cycle.trim() && (
                 <SuffixSpan text="일"/>
@@ -118,7 +118,7 @@ const Setting: React.FC<Props> = ({history}) => {
               value={form.income_cycle || 1}
               name="income_cycle"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                onSetForm(e, 'date')
+                onSetForm(e, 'date', form.income_cycle)
               }
             />
           </>
