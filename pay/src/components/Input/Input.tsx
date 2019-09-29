@@ -48,10 +48,11 @@ const Input: React.FC<Props> = React.memo(({
   placeholder = '입력해주세요.',
   value = '',
   onChange,
+  className,
   additional,
   ...props
 }) => (
-  <Div>
+  <Div className={className}>
     <StyledInput
       type={type}
       placeholder={placeholder}

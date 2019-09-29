@@ -6,6 +6,7 @@ import {fontStyleMixin} from '../../../../styles/mixins.styles';
 interface Props {
   name: string;
   isActive: boolean;
+  onToggleTab: () => void;
 }
 
 type TCommonButtonProps = Pick<Props, 'isActive'>;
@@ -19,6 +20,7 @@ const ButtonLi = styled.li<TCommonButtonProps>`
   border: ${({isActive}) => !isActive && '4px solid rgba(255, 255, 255, .6)'};
   background-color: ${({isActive}) => isActive ? $WHTIE : 'transparent'};
   text-align: center;
+  cursor: pointer;
 
   :last-child {
     margin-left: 10px;
@@ -32,13 +34,18 @@ const Button = styled.button<TCommonButtonProps>`
     family: 'nanumsquare',
     weight: '800'
   })};
+  padding-top: ${({isActive}) => isActive && '5px'};
 `;
 
 const TabBtn: React.FC<Props> = React.memo(({
   name,
-  isActive
+  isActive,
+  onToggleTab
 }) => (
-  <ButtonLi isActive={isActive}>
+  <ButtonLi
+    isActive={isActive}
+    onClick={onToggleTab}
+  >
     <Button isActive={isActive}>
       {name}
     </Button>
