@@ -7,28 +7,16 @@ import anonRequired from '../../hocs/anonRequired';
 import Input from '../../src/components/Input/Input';
 import InputRange from '../../src/components/Input/InputRange';
 import useInput from '../../src/components/Input/useInput';
-import {fontStyleMixin, backgroundImgMixin} from '../../styles/mixins.styles';
+import {backgroundImgMixin} from '../../styles/mixins.styles';
 import IconDownArrow from '../../src/assets/icons/icon-down-arrow.png';
 import IconUpArrow from '../../src/assets/icons/icon-up-arrow.png';
 import {RouteComponentProps} from 'react-router';
 import OGMetaHead from '../../src/components/common/OGMetaHead';
+import SuffixSpan from '../../src/components/Input/SuffixSpan';
 
 const Div = styled.div`
   height: 100%;
   background-color: ${$MAIN};
-`;
-
-const Span = styled.span`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 22px;
-  ${fontStyleMixin({
-    size: 13,
-    family: 'NanumSquare',
-    weight: '600',
-    color: $WHTIE
-  })};
 `;
 
 const ArrowDiv = styled.div<{isOpened: boolean;}>`
@@ -53,10 +41,6 @@ const CurrentMoneyInput = styled(Input)`
 
 interface Props extends RouteComponentProps {
 }
-
-const SuffixSpan: React.FC<{text: string}> = React.memo(({text}) => (
-  <Span>{text}</Span>
-));
 
 const SetOptionBtn: React.FC<{
   isOpened: boolean;
