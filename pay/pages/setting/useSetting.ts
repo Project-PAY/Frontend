@@ -1,14 +1,13 @@
 import * as React from 'react';
-import InfoApi from '../../apis/InfoApi';
-import useAccessNeededFunc from '../../../hooks/useAccessNeededFunc';
-import {IBaseInfo} from '../../@types/info';
-import containOnlyNumber from '../../lib/containOnlyNumber';
-import withoutSpecificStr from '../../lib/withoutSpecificStr';
-import withCommaNotation from '../../lib/withCommaNotation';
-import {Dig} from '../../@types/common';
+import {Dig} from '../../src/@types/common';
 import {RouteComponentProps} from 'react-router';
+import InfoApi from '../../src/apis/InfoApi';
+import useAccessNeededFunc from '../../hooks/useAccessNeededFunc';
+import {IBaseInfo} from '../../src/@types/info';
+import withoutSpecificStr from '../../src/lib/withoutSpecificStr';
+import onChangeInput, {TInputType} from '../../src/lib/onChangeInput';
 
-const useInput = (history: Dig<RouteComponentProps, 'history'>) => {
+const useSetting = (history: Dig<RouteComponentProps, 'history'>) => {
   const infoApi: InfoApi = useAccessNeededFunc(access => new InfoApi(access));
 
   const [form, setForm] = React.useState<IBaseInfo>({
@@ -67,45 +66,21 @@ const useInput = (history: Dig<RouteComponentProps, 'history'>) => {
     income_cycle: ''
   }));
 
-  // @TODO: useCallback에 대한 정확한 조사
-  const onChangeInput = React.useCallback((
-    {target: {name, value}}: React.ChangeEvent<HTMLInputElement>,
-    type: 'normal' | 'money' | 'date' = 'normal'
-  ) => {
-    switch(type) {
-      case 'normal':
-        containOnlyNumber(value) && setForm(curr => ({
-          ...curr,
-          [name]: value
-        }));
-        break;
-      case 'money':
-        containOnlyNumber(withoutSpecificStr(value, ',')) && setForm(curr => ({
-          ...curr,
-          [name]: withCommaNotation(
-            withoutSpecificStr(value, ',')
-          )
-        }));
-        break;
-      case 'date':
-        (value === '' || parseInt(value, 10) <= 365) && setForm(curr => ({
-          ...curr,
-          [name]: value
-        }));
-        break;
-      default:
-        break;
-    }
+  const onChangeSetForm = (e: React.ChangeEvent<HTMLInputElement>, type: TInputType) => {
+    const {name, value} = onChangeInput(e, 'money');
 
-    return null;
-  }, []);
+    setForm(curr => ({
+      ...curr,
+      [name]: value
+    }));
+  };
 
   return {
     form,
     onCompleteSetting,
-    onChangeInput,
-    onToggleOption
+    onToggleOption,
+    onChangeSetForm
   };
 };
 
-export default useInput;
+export default useSetting;

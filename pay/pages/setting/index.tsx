@@ -6,13 +6,13 @@ import LinkBtn from '../../src/components/common/Button/LinkBtn';
 import anonRequired from '../../hocs/anonRequired';
 import Input from '../../src/components/Input/Input';
 import InputRange from '../../src/components/Input/InputRange';
-import useInput from '../../src/components/Input/useInput';
 import {backgroundImgMixin} from '../../styles/mixins.styles';
 import IconDownArrow from '../../src/assets/icons/icon-down-arrow.png';
 import IconUpArrow from '../../src/assets/icons/icon-up-arrow.png';
 import {RouteComponentProps} from 'react-router';
 import OGMetaHead from '../../src/components/common/OGMetaHead';
 import SuffixSpan from '../../src/components/Input/SuffixSpan';
+import useSetting from './useSetting';
 
 const Div = styled.div`
   height: 100%;
@@ -56,9 +56,9 @@ const Setting: React.FC<Props> = ({history}) => {
   const {
     form,
     onCompleteSetting,
-    onChangeInput,
-    onToggleOption
-  } = useInput(history);
+    onToggleOption,
+    onChangeSetForm
+  } = useSetting(history);
 
   return (
     <Div>
@@ -70,7 +70,7 @@ const Setting: React.FC<Props> = ({history}) => {
           value={form.current_money}
           placeholder="소지한 돈을 입력하세요."
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            onChangeInput(e, 'money')
+            onChangeSetForm(e, 'money')
           }
           additional={form.current_money.trim() && (
             <SuffixSpan text="원"/>
@@ -94,7 +94,7 @@ const Setting: React.FC<Props> = ({history}) => {
               value={form.fixed_income}
               placeholder="고정 수입을 입력하세요."
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                onChangeInput(e, 'money')
+                onChangeSetForm(e, 'money')
               }
               additional={form.fixed_income.trim() && (
                 <SuffixSpan text="원"/>
@@ -105,7 +105,7 @@ const Setting: React.FC<Props> = ({history}) => {
               value={form.income_cycle}
               placeholder="수입 주기를 입력하세요."
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                onChangeInput(e, 'date')
+                onChangeSetForm(e, 'date')
               }
               additional={form.income_cycle.trim() && (
                 <SuffixSpan text="일"/>
@@ -118,7 +118,7 @@ const Setting: React.FC<Props> = ({history}) => {
               value={form.income_cycle || 1}
               name="income_cycle"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                onChangeInput(e, 'date')
+                onChangeSetForm(e, 'date')
               }
             />
           </>
