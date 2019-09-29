@@ -16,8 +16,16 @@ const Span = styled.span`
   })};
 `;
 
-const SuffixSpan: React.FC<{text: string}> = React.memo(({text}) => (
-  <Span>{text}</Span>
+interface Props {
+  text: string;
+  className?: string;
+}
+
+const SuffixSpan: React.FC<Props> = React.memo(({
+  text,
+  className
+}) => (
+  <Span className={className}>{text}</Span>
 ));
 
 export default SuffixSpan;
