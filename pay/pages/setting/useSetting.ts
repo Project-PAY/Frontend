@@ -66,7 +66,7 @@ const useSetting = (history: Dig<RouteComponentProps, 'history'>) => {
     income_cycle: ''
   }));
 
-  const onChangeSetForm = (e: React.ChangeEvent<HTMLInputElement>, type: TInputType) => {
+  const onSetForm = (e: React.ChangeEvent<HTMLInputElement>, type: TInputType) => {
     const {name, value} = onChangeInput(e, 'money');
 
     setForm(curr => ({
@@ -79,7 +79,7 @@ const useSetting = (history: Dig<RouteComponentProps, 'history'>) => {
     form,
     onCompleteSetting,
     onToggleOption,
-    onChangeSetForm
+    onSetForm
   };
 };
 
