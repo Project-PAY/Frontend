@@ -6,6 +6,7 @@ import {RouteComponentProps} from 'react-router';
 import TabBtn from '../../src/components/common/Button/TabBtn';
 import Input from '../../src/components/Input/Input';
 import SuffixSpan from '../../src/components/Input/SuffixSpan';
+import CalcBtn from '../../src/components/common/Button/CalcBtn';
 
 const Div = styled.div`
   height: 100%;
@@ -51,19 +52,37 @@ const StyledInput = styled(Input)`
       font-weight: 400;
     }
   }
+
+  @media screen and (max-width: 360px) {
+    input {
+      font-size: 16px;
+    }
+  }
 `;
 
 const StyledSuffixSpan = styled(SuffixSpan)`
-  top: 45%;
+  top: 46%;
   font-size: 22px;
   font-weight: 800;
+`;
+
+const CalcButtonUl = styled.ul`
+  text-align: center;
+  margin-top: 170px;
+
+  @media screen and (max-width: 360px) {
+    margin-top: 155px;
+  }
 `;
 
 interface Props extends RouteComponentProps {
 }
 
+const CalcBtns = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '00'];
+
 const Register: React.FC<Props> = ({history}) => {
   const [isExpenditureTab, toggleTab] = React.useState(true);
+  const [money, setMoney] = React.useState('');
 
   return (
     <Div>
@@ -90,11 +109,26 @@ const Register: React.FC<Props> = ({history}) => {
         <RegisterSpace>
           <StyledInput
             placeholder={`${isExpenditureTab ? '지출' : '수입'}을 입력해주세요.`}
-            value=""
+            value={money}
+            readOnly
             additional={(
               <StyledSuffixSpan text="원"/>
             )}
           />
+          <CalcButtonUl>
+            {CalcBtns.map(value => (
+              <CalcBtn
+                key={value}
+                name={value}
+                value={value}
+              >
+                {value}
+              </CalcBtn>
+            ))}
+            <CalcBtn name="delete">
+              5
+            </CalcBtn>
+          </CalcButtonUl>
         </RegisterSpace>
       </CenterDiv>
     </Div>

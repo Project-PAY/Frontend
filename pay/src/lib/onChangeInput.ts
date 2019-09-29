@@ -6,7 +6,7 @@ import withCommaNotation from './withCommaNotation';
 export type TInputType = 'normal' | 'money' | 'date';
 type TargetType = Dig<React.ChangeEvent<HTMLInputElement>, 'target'>;
 
-// @TODO: onChangeInput 테스트 코드 작성!!!
+// @TODO: onChangeInput 테스트 코드 작성
 const onChangeInput = (
   {target: {name, value}}: {target: TargetType},
   type: TInputType = 'normal',
