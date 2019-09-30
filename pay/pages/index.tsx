@@ -118,7 +118,7 @@ const Main = () => {
       <Ul>
         {menus(TEST_DATA).map(data => (
           <Info
-            key={data.id}
+            key={data.title}
             {...data}
           />
         ))}

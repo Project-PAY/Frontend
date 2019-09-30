@@ -3,8 +3,6 @@ import percentIcon from '../../assets/icons/icon-percent.png';
 import dollarIcon from '../../assets/icons/icon-dollar.png';
 import resetIcon from '../../assets/icons/icon-reset.png';
 import withCommaNotation from "../../lib/withCommaNotation";
-import v4 from 'uuid/v4';
-import {HashId} from '../../@types/auth';
 
 type TProps = Pick<InfoState, 'current_money'
   | 'current_figure'
@@ -20,7 +18,6 @@ export interface IMenu {
   src: string;
   value: string;
   suffix: string;
-  id: HashId;
 }
 
 const menus = (data: TProps): IMenu[] => {
@@ -35,7 +32,6 @@ const menus = (data: TProps): IMenu[] => {
 
   return [
     {
-      id: v4(),
       title: '현재 수치',
       subTitle: '현재 수치를 나타냅니다.',
       src: percentIcon,
@@ -43,7 +39,6 @@ const menus = (data: TProps): IMenu[] => {
       suffix: '퍼센트'
     },
     {
-      id: v4(),
       title: '남은 돈',
       subTitle: '현재 남은 돈을 나타냅니다.',
       src: dollarIcon,
@@ -51,7 +46,6 @@ const menus = (data: TProps): IMenu[] => {
       suffix: '원'
     },
     {
-      id: v4(),
       title: '초기화',
       subTitle: '현재 남은 시간을 나타냅니다.',
       src: resetIcon,
@@ -59,7 +53,6 @@ const menus = (data: TProps): IMenu[] => {
       suffix: '일'
     },
     {
-      id: v4(),
       title: '하루 지출액',
       subTitle: '오늘 하루 지출액을 나타냅니다.',
       src: dollarIcon,
@@ -67,7 +60,6 @@ const menus = (data: TProps): IMenu[] => {
       suffix: '원'
     },
     {
-      id: v4(),
       title: '이번 달 지출액',
       subTitle: '이번 한 달의 지출액을 나타냅니다.',
       src: dollarIcon,
@@ -75,7 +67,6 @@ const menus = (data: TProps): IMenu[] => {
       suffix: '원'
     },
     {
-      id: v4(),
       title: '저번 달 지출액',
       subTitle: '저번 한 달의 지출액을 나타냅니다.',
       src: dollarIcon,
