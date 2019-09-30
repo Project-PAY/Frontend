@@ -38,6 +38,8 @@ const ButtonLi = styled.li`
 `;
 
 const Button = styled.button`
+  width: 100%;
+  height: 100%;
   ${fontStyleMixin({
     size: 24,
     color: $WHTIE,
@@ -52,17 +54,20 @@ interface Props {
   name: string;
   value?: string;
   children: string | React.ReactNode;
+  onClick?: () => void;
 }
 
 const CalcBtn: React.FC<Props> = React.memo(({
   name,
   value,
-  children
+  children,
+  onClick
 }) => (
   <ButtonLi>
     <Button
       name={name}
       value={value}
+      onClick={onClick}
     >
       {children}
     </Button>

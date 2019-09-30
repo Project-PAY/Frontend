@@ -7,6 +7,9 @@ import TabBtn from '../../src/components/common/Button/TabBtn';
 import Input from '../../src/components/Input/Input';
 import SuffixSpan from '../../src/components/Input/SuffixSpan';
 import CalcBtn from '../../src/components/common/Button/CalcBtn';
+import backspaceIcon from '../../src/assets/icons/icon-backspace.png';
+import withCommaNotation from '../../src/lib/withCommaNotation';
+import withoutSpecificStr from '../../src/lib/withoutSpecificStr';
 
 const Div = styled.div`
   height: 100%;
@@ -75,11 +78,16 @@ const CalcButtonUl = styled.ul`
   }
 `;
 
+const BackspaceImg = styled.img`
+  width: 24px;
+`;
+
 interface Props extends RouteComponentProps {
 }
 
 const CalcBtns = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '00'];
 
+// @TODO: setState 관련 구문 개선
 const Register: React.FC<Props> = ({history}) => {
   const [isExpenditureTab, toggleTab] = React.useState(true);
   const [money, setMoney] = React.useState('');
@@ -121,12 +129,32 @@ const Register: React.FC<Props> = ({history}) => {
                 key={value}
                 name={value}
                 value={value}
+                onClick={() => setMoney(curr =>
+                  // 값이 없는 상태에서 0이나 00을 먼저 입력하는 상황 방지
+                  (!curr && (value === '0' || value === '00'))
+                    ? curr
+                    : withCommaNotation(
+                      withoutSpecificStr(curr + value, ',')
+                    )
+                )}
               >
                 {value}
               </CalcBtn>
             ))}
-            <CalcBtn name="delete">
-              5
+            <CalcBtn
+              name="delete"
+              onClick={() => setMoney(curr => {
+                const value = curr.substring(0, curr.length - 1);
+
+                return withCommaNotation(
+                  withoutSpecificStr(value, ',')
+                );
+              })}
+            >
+              <BackspaceImg
+                src={backspaceIcon}
+                alt="지우기"
+              />
             </CalcBtn>
           </CalcButtonUl>
         </RegisterSpace>
