@@ -38,3 +38,10 @@ export const verticalAlignMixin = (additional?: string) => `
   transform: translateY(-50%);
   ${additional};
 `;
+
+export const horizontalAlignMixin = (additional?: string) => `
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  ${additional};
+`;
