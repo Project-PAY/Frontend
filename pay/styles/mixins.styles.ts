@@ -32,16 +32,14 @@ export const backgroundImgMixin = (background: IBackgroundImgMixin = {} as IBack
   background-repeat: no-repeat;
 `;
 
-export const verticalAlignMixin = (additional?: string) => `
+export const verticalAlignMixin = () => `
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  ${additional};
 `;
 
-export const horizontalAlignMixin = (additional?: string) => `
+export const horizontalAlignMixin = () => `
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  ${additional};
 `;
