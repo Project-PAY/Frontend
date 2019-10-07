@@ -1,7 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import {$MAIN} from '../../../styles/variables.types';
+import {$MAIN, $WHTIE} from '../../../styles/variables.types';
 import {fontStyleMixin} from '../../../styles/mixins.styles';
+import Radio from '../common/Radio';
+import useCategory from './useCategory';
 
 const Div = styled.div`
   position: absolute;
@@ -12,16 +14,48 @@ const Div = styled.div`
   background-color: ${$MAIN};
 `;
 
+const CenterDiv = styled.div`
+  width: calc(100% - 60px);
+  height: 100%;
+  margin: 0 auto;
+`;
+
 const H1 = styled.h1`
   ${fontStyleMixin({
-    family: 'Gotham Bold'
-  })}
+    family: 'Gotham-Bold',
+    size: 40,
+    color: $WHTIE
+  })};
+  padding-top: 70px;
+  margin-block-end: 0;
 `;
 
 const Category = React.memo(() => {
+  const {
+    categories,
+    category,
+    changeCategory
+  } = useCategory();
+
   return (
     <Div>
-      <H1>Category</H1>
+      <CenterDiv>
+        <H1>Category</H1>
+        <ul>
+          {categories.map(({
+            label,
+            value
+          }) => (
+            <li key={value}>
+              <Radio
+                checked={category === value}
+                label={label}
+                onClick={changeCategory(value)}
+              />
+            </li>
+          ))}
+        </ul>
+      </CenterDiv>
     </Div>
   );
 });
