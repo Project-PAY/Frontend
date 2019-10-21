@@ -30,9 +30,44 @@ const H1 = styled.h1`
   margin-block-end: 0;
 `;
 
-const Category = React.memo(() => {
+const Ul = styled.ul`
+  text-align: center;
+  margin-top: 38px;
+
+  li {
+    display: inline-block;
+    margin: 8px;
+  }
+`;
+
+interface ICategoryCompProps {
+  checked: boolean;
+  label: string;
+  onClick: () => void;
+}
+
+const CategoryComp: React.FC<ICategoryCompProps> = React.memo(({
+  checked,
+  label,
+  onClick
+}) => (
+  <li>
+    <Radio
+      checked={checked}
+      label={label}
+      onClick={onClick}
+    />
+  </li>
+));
+
+interface Props {
+  type: 'expenditure' | 'income';
+}
+
+const Category: React.FC<Props> = React.memo(({type}) => {
   const {
-    categories,
+    expenditureCategories,
+    incomeCategories,
     category,
     changeCategory
   } = useCategory();
@@ -41,20 +76,19 @@ const Category = React.memo(() => {
     <Div>
       <CenterDiv>
         <H1>Category</H1>
-        <ul>
-          {categories.map(({
-            label,
-            value
-          }) => (
-            <li key={value}>
-              <Radio
-                checked={category === value}
-                label={label}
-                onClick={changeCategory(value)}
-              />
-            </li>
+        <Ul>
+          {(type === 'expenditure'
+            ? expenditureCategories
+            : incomeCategories
+          ).map(({label, value}) => (
+            <CategoryComp
+              key={value}
+              checked={category === value}
+              label={label}
+              onClick={changeCategory(value)}
+            />
           ))}
-        </ul>
+        </Ul>
       </CenterDiv>
     </Div>
   );

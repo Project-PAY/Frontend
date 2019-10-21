@@ -10,6 +10,8 @@ import CalcBtn from '../../src/components/common/Button/CalcBtn';
 import backspaceIcon from '../../src/assets/icons/icon-backspace.png';
 import withCommaNotation from '../../src/lib/withCommaNotation';
 import withoutSpecificStr from '../../src/lib/withoutSpecificStr';
+import {horizontalAlignMixin, opacityMixin} from '../../styles/mixins.styles';
+import Category from '../../src/components/Category';
 
 const Div = styled.div`
   height: 100%;
@@ -82,6 +84,17 @@ const BackspaceImg = styled.img`
   width: 24px;
 `;
 
+const OpenDetailOptionBtn = styled.button`
+  ${horizontalAlignMixin()};
+  width: 200px;
+  height: 10px;
+  background-color: ${$WHTIE};
+  ${opacityMixin(0.5)};
+  border: 0;
+  bottom: 0;
+  cursor: pointer;
+`;
+
 interface Props extends RouteComponentProps {
 }
 
@@ -91,6 +104,7 @@ const CalcBtns = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '00'];
 const Register: React.FC<Props> = ({history}) => {
   const [isExpenditureTab, toggleTab] = React.useState(true);
   const [money, setMoney] = React.useState('');
+  const [isDetailOptionOpened, toggleDetailOption] = React.useState(false);
 
   return (
     <Div>
@@ -157,8 +171,12 @@ const Register: React.FC<Props> = ({history}) => {
               />
             </CalcBtn>
           </CalcButtonUl>
+          <OpenDetailOptionBtn onClick={() => toggleDetailOption(true)}/>
         </RegisterSpace>
       </CenterDiv>
+      {isDetailOptionOpened && (
+        <Category type={isExpenditureTab ? 'expenditure' : 'income'}/>
+      )}
     </Div>
   );
 };

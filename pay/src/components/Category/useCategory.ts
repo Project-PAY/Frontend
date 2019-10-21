@@ -5,7 +5,14 @@ interface ICategory {
   value: string;
 }
 
-const categories: ICategory[] = [
+const incomeCategories: ICategory[] = [
+  {
+    label: 'Test',
+    value: 'Test'
+  }
+];
+
+const expenditureCategories: ICategory[] = [
   {
     label: '식비',
     value: 'food'
@@ -40,7 +47,8 @@ const useCategory = () => {
   }, []);
 
   return {
-    categories,
+    expenditureCategories,
+    incomeCategories,
     category,
     changeCategory
   };

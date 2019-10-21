@@ -16,3 +16,4 @@ const A = () => (
 로 축약하여 나타내기
 ```
 3. 좀 더 명확한 이름을 가지도록 styled-components 네이밍 수정
+4. useCallback, useMemo 적절한 활용
