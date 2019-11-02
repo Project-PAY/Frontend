@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled, {keyframes} from 'styled-components';
+import styled from 'styled-components';
 import {$MAIN, $WHTIE} from '../../../styles/variables.types';
 import {fontStyleMixin} from '../../../styles/mixins.styles';
 import Radio from '../common/Radio';
@@ -7,24 +7,41 @@ import useCategory from './useCategory';
 import {expenditureCategories, incomeCategories} from './category';
 import closeIcon from '../../assets/icons/icon-close.png';
 
-const testAnimation = keyframes`
-  from {
-    top: 100%;
-  }
+interface ICategoryCompProps {
+  checked: boolean;
+  label: string;
+  onClick: () => void;
+}
 
-  to {
-    top: 0;
-  }
-`;
+const CategoryComp: React.FC<ICategoryCompProps> = React.memo(({
+  checked,
+  label,
+  onClick
+}) => (
+  <li>
+    <Radio
+      checked={checked}
+      label={label}
+      onClick={onClick}
+    />
+  </li>
+));
 
-const Div = styled.div`
+interface Props {
+  type: 'expenditure' | 'income';
+  onClose: () => void;
+  on: boolean;
+  className?: string;
+}
+
+const Div = styled.div<Pick<Props, 'on'>>`
   position: absolute;
   z-index: 10;
-  top: 0;
   width: 100%;
   height: 100%;
   background-color: ${$MAIN};
-  animation: ${testAnimation} .4s ease forwards;
+  transition: .4s;
+  top: ${({on}) => on ? 0 : '100%'};
 `;
 
 const CenterDiv = styled.div`
@@ -62,48 +79,31 @@ const Ul = styled.ul`
   }
 `;
 
-interface ICategoryCompProps {
-  checked: boolean;
-  label: string;
-  onClick: () => void;
-}
-
-const CategoryComp: React.FC<ICategoryCompProps> = React.memo(({
-  checked,
-  label,
-  onClick
-}) => (
-  <li>
-    <Radio
-      checked={checked}
-      label={label}
-      onClick={onClick}
-    />
-  </li>
-));
-
-interface Props {
-  type: 'expenditure' | 'income';
-  onClose: () => void;
-}
-
 const Category: React.FC<Props> = React.memo(({
   type,
-  onClose
+  onClose,
+  on,
+  className
 }) => {
   const {
     category,
-    changeCategory
+    setCategory
   } = useCategory();
 
   return (
-    <Div>
+    <Div
+      className={className}
+      on={on}
+    >
       <CenterDiv>
         <H1>Category</H1>
         <Img
           src={closeIcon}
           alt="닫기"
-          onClick={onClose}
+          onClick={() => {
+            onClose();
+            setCategory('');
+          }}
         />
         <Ul>
           {(type === 'expenditure'
@@ -114,7 +114,7 @@ const Category: React.FC<Props> = React.memo(({
               key={value}
               checked={category === value}
               label={label}
-              onClick={changeCategory(value)}
+              onClick={() => setCategory(value)}
             />
           ))}
         </Ul>

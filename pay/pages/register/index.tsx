@@ -12,6 +12,7 @@ import withCommaNotation from '../../src/lib/withCommaNotation';
 import withoutSpecificStr from '../../src/lib/withoutSpecificStr';
 import {horizontalAlignMixin, opacityMixin} from '../../styles/mixins.styles';
 import Category from '../../src/components/Category';
+// import CSSTransition from "react-transition-group/CSSTransition";
 
 const Div = styled.div`
   height: 100%;
@@ -95,6 +96,24 @@ const OpenDetailOptionBtn = styled.button`
   cursor: pointer;
 `;
 
+// const StyledCategory = styled(Category)`
+//   &.fade-enter {
+//     opacity: 0;
+//   }
+
+//   &.fade-enter-active {
+//     opacity: 1;
+//   }
+
+//   &.fade-exit {
+//     opacity: 1;
+//   }
+
+//   &.fade-exit-active {
+//     opacity: 0;
+//   }
+// `;
+
 interface Props extends RouteComponentProps {
 }
 
@@ -174,12 +193,26 @@ const Register: React.FC<Props> = ({history}) => {
           <OpenDetailOptionBtn onClick={() => toggleDetailOption(true)}/>
         </RegisterSpace>
       </CenterDiv>
-      {isDetailOptionOpened && (
-        <Category
-          type={isExpenditureTab ? 'expenditure' : 'income'}
-          onClose={() => toggleDetailOption(false)}
-        />
-      )}
+      {/* isDetailOptionOpened && (
+        <CSSTransition
+          timeout={1000}
+          classNames="fade"
+          in={isDetailOptionOpened}
+          unmountOnExit
+          mountOnEnter
+        >
+          {() => <StyledCategory
+            type={isExpenditureTab ? 'expenditure' : 'income'}
+            onClose={() => toggleDetailOption(false)}
+            className="fade"
+          />}
+        </CSSTransition>
+      ) */}
+      <Category
+        type={isExpenditureTab ? 'expenditure' : 'income'}
+        onClose={() => toggleDetailOption(false)}
+        on={isDetailOptionOpened}
+      />
     </Div>
   );
 };
