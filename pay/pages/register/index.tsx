@@ -175,7 +175,10 @@ const Register: React.FC<Props> = ({history}) => {
         </RegisterSpace>
       </CenterDiv>
       {isDetailOptionOpened && (
-        <Category type={isExpenditureTab ? 'expenditure' : 'income'}/>
+        <Category
+          type={isExpenditureTab ? 'expenditure' : 'income'}
+          onClose={() => toggleDetailOption(false)}
+        />
       )}
     </Div>
   );
