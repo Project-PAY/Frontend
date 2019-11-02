@@ -5,9 +5,25 @@ interface ICategory {
 
 export const incomeCategories: ICategory[] = [
   {
-    label: 'Test',
-    value: 'Test'
-  }
+    label: '월급',
+    value: 'salary'
+  },
+  {
+    label: '용돈',
+    value: 'pocketMoney'
+  },
+  {
+    label: '보너스',
+    value: 'bonus'
+  },
+  {
+    label: '수당',
+    value: 'extraPay'
+  },
+  {
+    label: '기타',
+    value: 'pay'
+  },
 ];
 
 export const expenditureCategories: ICategory[] = [
@@ -34,5 +50,29 @@ export const expenditureCategories: ICategory[] = [
   {
     label: '의류',
     value: 'clothes'
+  },
+  {
+    label: '자기계발',
+    value: 'selfImprovement'
+  },
+  {
+    label: '운동',
+    value: 'exercise'
+  },
+  {
+    label: '데이트',
+    value: 'date'
+  },
+  {
+    label: '게임',
+    value: 'game'
+  },
+  {
+    label: '투자',
+    value: 'investment'
+  },
+  {
+    label: '기타',
+    value: 'etc'
   }
 ];

@@ -4,6 +4,7 @@ import {$MAIN, $WHTIE} from '../../../styles/variables.types';
 import {fontStyleMixin} from '../../../styles/mixins.styles';
 import Radio from '../common/Radio';
 import useCategory from './useCategory';
+import {expenditureCategories, incomeCategories} from './category';
 
 const Div = styled.div`
   position: absolute;
@@ -66,8 +67,6 @@ interface Props {
 
 const Category: React.FC<Props> = React.memo(({type}) => {
   const {
-    expenditureCategories,
-    incomeCategories,
     category,
     changeCategory
   } = useCategory();
